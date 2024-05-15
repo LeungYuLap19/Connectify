@@ -1,0 +1,27 @@
+.container {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.10);
+    padding: 0px 0px 20px 0px;
+}
+
+.navbar-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
+    margin-bottom: 10px;
+}
+
+.navbar-profile {
+    width: 100%;
+    padding: 20px;
+}
+
+.navbar-option-item {
+    width: 100%;
+    padding: 20px;
+}

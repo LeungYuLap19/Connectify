@@ -1,0 +1,53 @@
+.welcome-gif {
+    width: 80%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.welcome-gif video {
+    width: 100%;
+}
+
+.welcome-message {
+    width: 70%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.welcome-message p {
+    margin-top: 20px;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+}
+
+.welcome-button {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.welcome-button button {
+    width: 46%;
+    padding: 4px 0px;
+    font-size: 16px;
+    height: 40px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.welcome-button-signup {
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    background-color: white;
+    transition: 0.5s;
+}
+
+.welcome-button-signin {
+    background-color: #406efe;
+    border: 2px solid #406efe;
+    color: white;
+}

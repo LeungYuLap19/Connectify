@@ -1,0 +1,42 @@
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: 0.5s background, 0.5s transform;
+    padding: 12px 12px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.container:hover {
+    background: #efefef;
+    transform: scale(1.05);
+}
+
+.container img {
+    width: 25px;
+    margin-right: 20px;
+}
+
+.container p {
+    font-size: 20px;
+}
+
+.clicked {
+    background-color: #406efe;
+    transform: scale(1.05);
+}
+
+.clicked img {
+    filter: invert(100%);
+}
+
+.clicked p {
+    color: white;
+}
+
+.clicked:hover {
+    background-color: #3263f3;
+}

@@ -1,0 +1,69 @@
+.register-message {
+    margin-top: 40px;
+    width: 90%;
+}
+
+.register-message h1 {
+    margin-bottom: 10px;
+}
+
+.register-message p {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.register-form {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.register-form form > * {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.register-form input {
+    width: 100%;
+    padding: 10px 0px 5px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    font-size: 16px;
+    transition: 0.5s;
+}
+
+.register-form input:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+}
+
+.register-button {
+    height: 40px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    background-color: white;
+    border-radius: 15px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.register-signin {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.register-signin p {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.register-signin span {
+    font-size: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+}

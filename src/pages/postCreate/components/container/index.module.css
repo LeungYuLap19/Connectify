@@ -1,0 +1,30 @@
+.container {
+    height: calc(100vh - 10%);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.container h1 {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 3%;
+}
+
+.create-window {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-window-upload {
+    aspect-ratio: 4.5/1;
+    width: 100%;
+}
+
+.create-window-input {
+    flex-grow: 1;
+    width: 100%;
+}
