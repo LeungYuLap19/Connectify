@@ -10,12 +10,15 @@ import Done from '../../../../animations/Done';
 export default function Index({ setPage }) {
   const navigate = useNavigate(); 
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.value.userData)
 
   const usernameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [isDone, setIsDone] = useState(false);
+
+  useEffect(() => {
+    usernameRef.current.focus();
+  }, []);
 
   const { signup } = useSignup();
   const handleSignup = async (e) => {
@@ -37,6 +40,7 @@ export default function Index({ setPage }) {
       usernameRef.current.value = '';
       emailRef.current.value = '';
       passwordRef.current.value = '';
+      usernameRef.current.focus();
     }
   }
 

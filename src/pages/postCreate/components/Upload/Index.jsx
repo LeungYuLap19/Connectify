@@ -1,46 +1,24 @@
-import React, { useRef, useState } from 'react';
 import indexStyle from './index.module.css';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Photo from '../Photo/Index';
+import useImageUpload from '../../hooks/useImageUpload';
+import { useEffect } from 'react';
 
-export default function Index() {
-    const photoRef = useRef(null);
-    const [uploaded, setUploaded] = useState([]);
+export default function Index({ post, setPost }) {
+    const { uploaded, photoRef, handleFileChange, removePhoto } = useImageUpload();
 
-    const handleFileChange = (e) => {
-        console.log('uploaded');
-        const selectedFile = e.target.files[0];
-        if (selectedFile) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            const imageDataUrl = reader.result;
-            if (uploaded.includes(imageDataUrl)) {
-            console.log('Image already uploaded.');
-            } else {
-            setUploaded([...uploaded, imageDataUrl]);
-            }
-        };
-        reader.readAsDataURL(selectedFile);
-        }
-        e.target.value = null;
-    };
-
-    const removePhoto = (index) => {
-        const updatedUploaded = [...uploaded];
-        updatedUploaded.splice(index, 1);
-        setUploaded(updatedUploaded);
-    };
+    useEffect(() => {
+        setPost({...post, photo: uploaded});
+    }, [uploaded]);
 
     return (
         <div className={indexStyle['container']}>
-        <Swiper slidesPerView={4.5} grabCursor={true}>
-            {uploaded.map((photo, index) => (
-            <SwiperSlide key={index}>
-                <Photo photo={photo} onRemove={() => removePhoto(index)} />
-            </SwiperSlide>
-            ))}
-
+        <Swiper 
+            direction={'vertical'}
+            slidesPerView={1.6} 
+            grabCursor={true}
+        >
             {uploaded.length < 6 && (
             <SwiperSlide>
                 <div
@@ -62,6 +40,12 @@ export default function Index() {
                 </div>
             </SwiperSlide>
             )}
+
+            {uploaded.map((photo, index) => (
+            <SwiperSlide key={index}>
+                <Photo photo={photo} onRemove={() => removePhoto(index)} />
+            </SwiperSlide>
+            ))}
         </Swiper>
         </div>
     );

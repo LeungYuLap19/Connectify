@@ -9,10 +9,13 @@ import { useNavigate } from 'react-router-dom';
 export default function Index({ setPage }) {
   const navigate = useNavigate(); 
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.value.userData)
 
   const identifierRef = useRef(null);
   const passwordRef = useRef(null);
+
+  useEffect(() => {
+    identifierRef.current.focus();
+  }, []);
 
   const { signin } = useSignin();
   const handleSignin = async (e) => {
@@ -30,6 +33,7 @@ export default function Index({ setPage }) {
     else {
       identifierRef.current.value = '';
       passwordRef.current.value = '';
+      identifierRef.current.focus();
     }
   }
 

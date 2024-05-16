@@ -15,6 +15,10 @@
 }
 
 .upload h1 {
-    font-size: 60px;
+    font-size: clamp(30px, 50px, 60px);
     width: min-content;
+}
+
+.upload p {
+    font-size: clamp(10px, 12px, 20px);
 }
