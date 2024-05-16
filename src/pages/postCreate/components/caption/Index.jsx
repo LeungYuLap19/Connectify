@@ -8,6 +8,8 @@ export default function Index({ post, setPost, handleCreatePost }) {
         setPost({...post, caption: e.target.value});
     };
 
+    const captionRef = useRef(null);
+
     return (
         <div className={indexStyle['container']}>
             <div className={indexStyle['header']}>
@@ -18,7 +20,10 @@ export default function Index({ post, setPost, handleCreatePost }) {
                 </div>
                 <button 
                 className={indexStyle['header-post']}
-                onClick={handleCreatePost}
+                onClick={() => {
+                    handleCreatePost();
+                    captionRef.current.value = '';
+                }}
                 >Post</button>
             </div>
 
@@ -27,6 +32,7 @@ export default function Index({ post, setPost, handleCreatePost }) {
                     placeholder='Write your caption...'
                     name="caption" 
                     rows={20}
+                    ref={captionRef}
                     onChange={onCaptionChange}
                 />
             </div>

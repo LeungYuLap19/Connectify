@@ -27,7 +27,7 @@ const useImageUpload = () => {
         setUploaded(updatedUploaded);
     };
 
-    return { uploaded, photoRef, handleFileChange, removePhoto }
+    return { uploaded, photoRef, handleFileChange, removePhoto, setUploaded }
 }
 
 export default useImageUpload;

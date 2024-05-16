@@ -7,7 +7,7 @@ export default function AppRouter() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/connectify/auth' element={<Auth />}></Route>
+                <Route path='/' element={<Auth />}></Route>
                 <Route path='/connectify/main' element={<Main />}></Route>
             </Routes>
         </BrowserRouter>

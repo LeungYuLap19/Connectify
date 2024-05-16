@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    padding: 2% 5%;
 }
 
 .container h1 {
@@ -20,9 +21,18 @@
 
 .create-window-upload {
     width: 40%;
-    aspect-ratio: 1/1.6;
+    aspect-ratio: 1/1.5;
 }
 
 .create-window-input {
     width: 60%;
+}
+
+.done-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
 }

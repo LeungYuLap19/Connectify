@@ -5,18 +5,22 @@ import Photo from '../Photo/Index';
 import useImageUpload from '../../hooks/useImageUpload';
 import { useEffect } from 'react';
 
-export default function Index({ post, setPost }) {
-    const { uploaded, photoRef, handleFileChange, removePhoto } = useImageUpload();
+export default function Index({ post, setPost, done }) {
+    const { uploaded, photoRef, handleFileChange, removePhoto, setUploaded } = useImageUpload();
 
     useEffect(() => {
         setPost({...post, photo: uploaded});
     }, [uploaded]);
 
+    useEffect(() => {
+        if (done) { setUploaded([]); }
+    }, [done]);
+
     return (
         <div className={indexStyle['container']}>
         <Swiper 
             direction={'vertical'}
-            slidesPerView={1.6} 
+            slidesPerView={1.5} 
             grabCursor={true}
         >
             {uploaded.length < 6 && (
