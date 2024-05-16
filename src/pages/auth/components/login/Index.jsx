@@ -4,7 +4,9 @@ import Header from '../BrandHeader/Index'
 import useSignin from '../../hooks/useSignin';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../../../store/slices/userSlice'
+import { storePosts } from '../../../../store/slices/postsSlice'
 import { useNavigate } from 'react-router-dom';
+import useGetPostsByUserid from '../../hooks/useGetPostsByUserid';
 
 export default function Index({ setPage }) {
   const navigate = useNavigate(); 
@@ -18,6 +20,7 @@ export default function Index({ setPage }) {
   }, []);
 
   const { signin } = useSignin();
+  const { getPosts } = useGetPostsByUserid();
   const handleSignin = async (e) => {
     e.preventDefault();
     const indentifier = identifierRef.current.value.trim();
@@ -26,9 +29,14 @@ export default function Index({ setPage }) {
     const data = await signin(indentifier, password);
     if(data) {
       const userData = data.data;
-      console.log(userData);
-      dispatch(login(userData));
-      navigate('/connectify/main');
+      const posts = await getPosts(userData.id);
+      if (posts) {
+        const postsData = posts.data;
+        console.log(postsData);
+        dispatch(login(userData));
+        dispatch(storePosts(postsData));
+        navigate('/connectify/main');
+      }
     }
     else {
       identifierRef.current.value = '';

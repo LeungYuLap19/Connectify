@@ -3,12 +3,16 @@ import indexStyle from './index.module.css';
 import UserTag from '../../../../common/components/userTag/Index';
 import DateTag from '../../../../common/components/dateTag/Index';
 
-export default function Index({ post, setPost, handleCreatePost }) {
+export default function Index({ post, setPost, handleCreatePost, done }) {
     const onCaptionChange = (e) => {
         setPost({...post, caption: e.target.value});
     };
 
     const captionRef = useRef(null);
+
+    useEffect(() => {
+        if (done) { captionRef.current.value = ''; }
+    }, [done]);
 
     return (
         <div className={indexStyle['container']}>
@@ -20,10 +24,7 @@ export default function Index({ post, setPost, handleCreatePost }) {
                 </div>
                 <button 
                 className={indexStyle['header-post']}
-                onClick={() => {
-                    handleCreatePost();
-                    captionRef.current.value = '';
-                }}
+                onClick={handleCreatePost}
                 >Post</button>
             </div>
 

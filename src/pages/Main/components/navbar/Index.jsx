@@ -3,7 +3,7 @@ import indexStyle from './index.module.css';
 import Header from '../../../auth/components/BrandHeader/Index'
 import Profile from '../profile/Index';
 import Item from '../item/Index';
-import ProfilePage from '../../../profile/components/Index';
+import ProfilePage from '../../../profile/components/container/Index';
 import { navListName } from './navList';
 
 export default function Index({ setItemClickedM }) {

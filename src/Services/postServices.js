@@ -18,6 +18,25 @@ async function createPost(postData) {
     }
 }
 
+async function getPostsByUserid(userid) {
+    try {
+        const res = await axios.post('http://localhost:3000/post/getPostsByUserid', {
+            userid: userid,
+        });
+
+        if (res.status === 200) {
+            return res.data;
+        }
+        else {
+            return null;
+        }
+    } catch (error) {
+        alert('Failed to fetch posts');
+        return null;
+    }
+}
+
 export {
     createPost,
+    getPostsByUserid,
 }

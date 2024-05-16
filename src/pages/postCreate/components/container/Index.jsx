@@ -46,7 +46,7 @@ export default function Index() {
             <Upload post={post} setPost={setPost} done={done}/>
           </div>
           <div className={indexStyle['create-window-input']}>
-            <Caption post={post} setPost={setPost} handleCreatePost={createPost}/>
+            <Caption post={post} setPost={setPost} handleCreatePost={createPost} done={done}/>
           </div> 
         </div>
       </div>
