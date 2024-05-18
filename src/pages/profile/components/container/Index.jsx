@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import indexStyle from './index.module.css';
 import Info from '../info/Index'
 import Posts from '../posts/Index'
+import PostWindow from '../../../../common/components/postWindow/Index';
 
-export default function Index() {
+export default function Index({ userData }) {
+  const [postData, setPostData] = useState(null);
+
   return (
     <div className={indexStyle['container']}>
       <div className={indexStyle['background']}>
@@ -16,9 +19,11 @@ export default function Index() {
         </div>
         
         <div className={indexStyle['profile-posts']}>
-          <Posts />
+          <Posts setPostData={setPostData}/>
         </div>
       </div>
+
+      { postData && <PostWindow postData={postData} setPostData={setPostData} userData={userData}/> } 
     </div>
   )
 }

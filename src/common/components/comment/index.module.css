@@ -1,0 +1,23 @@
+.container {
+    width: 100%;
+}
+
+.container > * {
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.dot {
+    margin: 0 5px;
+    padding-top: 2px;
+}
+
+.comment {
+    padding-left: 50px;
+    margin-top: -5px;
+}

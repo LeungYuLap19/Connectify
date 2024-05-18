@@ -1,0 +1,49 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.like {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    margin-right: 5px;
+}
+
+.like > img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.heartFull {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    transform: scale(0);
+    transition: transform 0.1s ease-in-out;
+}
+
+.popup {
+    animation: bounce 0.5s ease-in-out;
+    transform: scale(1);
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

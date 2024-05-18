@@ -1,9 +1,14 @@
 import React from 'react'
 import indexStyle from './index.module.css';
 
-export default function Index({ post }) {
+export default function Index({ post, setPostData }) {
   return (
-    <div className={indexStyle['post-item']}>
+    <div 
+      className={indexStyle['post-item']}
+      onClick={() => {
+        setPostData(post);
+      }}
+    >
         <img src={post.photo[0]} alt="post-image" />
         <div className={indexStyle['layer']}>
             <div className={indexStyle['like']}>

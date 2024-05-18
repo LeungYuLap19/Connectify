@@ -5,9 +5,11 @@ import Profile from '../profile/Index';
 import Item from '../item/Index';
 import ProfilePage from '../../../profile/components/container/Index';
 import { navListName } from './navList';
+import { useSelector } from 'react-redux';
 
 export default function Index({ setItemClickedM }) {
   const [itemClicked, setItemClicked] = useState(navListName[0]);
+  const userData = useSelector((state) => state.user.value.userData);
 
   return (
     <div className={indexStyle['container']}>
@@ -18,7 +20,7 @@ export default function Index({ setItemClickedM }) {
         <div 
           className={indexStyle['navbar-profile']}
           onClick={() => {
-            setItemClickedM({name: '', icon: '', component: <ProfilePage />});
+            setItemClickedM({name: '', icon: '', component: <ProfilePage userData={userData} />});
             setItemClicked({name: '', icon: '', component: null});
           }}
         >

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import indexStyle from './index.module.css';
 import Header from '../BrandHeader/Index'
 import useSignin from '../../hooks/useSignin';
@@ -7,6 +7,7 @@ import { login } from '../../../../store/slices/userSlice'
 import { storePosts } from '../../../../store/slices/postsSlice'
 import { useNavigate } from 'react-router-dom';
 import useGetPostsByUserid from '../../hooks/useGetPostsByUserid';
+import Loading from './../../../../animations/Loading';
 
 export default function Index({ setPage }) {
   const navigate = useNavigate(); 
@@ -14,6 +15,7 @@ export default function Index({ setPage }) {
 
   const identifierRef = useRef(null);
   const passwordRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     identifierRef.current.focus();
@@ -22,6 +24,7 @@ export default function Index({ setPage }) {
   const { signin } = useSignin();
   const { getPosts } = useGetPostsByUserid();
   const handleSignin = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const indentifier = identifierRef.current.value.trim();
     const password = passwordRef.current.value.trim();
@@ -35,10 +38,12 @@ export default function Index({ setPage }) {
         console.log(postsData);
         dispatch(login(userData));
         dispatch(storePosts(postsData));
+        setLoading(false);
         navigate('/connectify/main');
       }
     }
     else {
+      setLoading(false);
       identifierRef.current.value = '';
       passwordRef.current.value = '';
       identifierRef.current.focus();
@@ -46,39 +51,42 @@ export default function Index({ setPage }) {
   }
 
   return (
-    <div className='container'>
-      <Header />
+    <>
+      <div className='container'>
+        <Header />
 
-      <div className={indexStyle['login-message']}>
-        <h1>Welcome Back!</h1>
-        <p>Sign in to Continue.</p>
-      </div>
+        <div className={indexStyle['login-message']}>
+          <h1>Welcome Back!</h1>
+          <p>Sign in to Continue.</p>
+        </div>
 
-      <div className={indexStyle['login-form']}>
-        <form onSubmit={handleSignin}>
-          <div className={indexStyle['login-form-email']}>
-            <label>Email or Username</label><br/>
-            <input type="text" name="identifier" ref={identifierRef} required/>
-          </div>
-          <div className={indexStyle['login-form-password']}>
-            <label>Password</label><br/>
-            <input type="password" name="password" ref={passwordRef} required/>
-          </div>
-          <button className={indexStyle['login-button']} type="submit">Login</button>
-        </form>
-      </div>
+        <div className={indexStyle['login-form']}>
+          <form onSubmit={handleSignin}>
+            <div className={indexStyle['login-form-email']}>
+              <label>Email or Username</label><br/>
+              <input type="text" name="identifier" ref={identifierRef} required/>
+            </div>
+            <div className={indexStyle['login-form-password']}>
+              <label>Password</label><br/>
+              <input type="password" name="password" ref={passwordRef} required/>
+            </div>
+            <button className={indexStyle['login-button']} type="submit">Login</button>
+          </form>
+        </div>
 
-      <div className={indexStyle['login-signup']}>
-        <p>Don't have an account?</p>
-        <span
-          onClick={() => {
-            setPage({
-              login: false,
-              createAcc: true
-            })
-          }}
-        >Sign up</span>
+        <div className={indexStyle['login-signup']}>
+          <p>Don't have an account?</p>
+          <span
+            onClick={() => {
+              setPage({
+                login: false,
+                createAcc: true
+              })
+            }}
+          >Sign up</span>
+        </div>
       </div>
-    </div>
+      { loading && <Loading /> }
+    </>
   )
 }

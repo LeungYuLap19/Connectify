@@ -3,7 +3,7 @@ import indexStyle from './index.module.css';
 import { useSelector } from 'react-redux';
 import Post from '../post/Index';
 
-export default function Index() {
+export default function Index({ setPostData }) {
     const postsData = useSelector((state) => state.posts.value.postsData);
     return (
         <div className={indexStyle['container']}>
@@ -15,9 +15,9 @@ export default function Index() {
 
             <div className={indexStyle['posts-grid']}>
                 {
-                    postsData.map(post => {
+                    postsData.map((post, index) => {
                         return (
-                            <Post post={post}/>
+                            <Post post={post} setPostData={setPostData} key={index}/>
                         )
                     })
                 }

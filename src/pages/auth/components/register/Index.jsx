@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../../../store/slices/userSlice'
 import Done from '../../../../animations/Done';
+import Loading from '../../../../animations/Loading';
 
 export default function Index({ setPage }) {
   const navigate = useNavigate(); 
@@ -15,6 +16,7 @@ export default function Index({ setPage }) {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [isDone, setIsDone] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     usernameRef.current.focus();
@@ -22,6 +24,7 @@ export default function Index({ setPage }) {
 
   const { signup } = useSignup();
   const handleSignup = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const username = usernameRef.current.value.trim();
     const email = emailRef.current.value.trim();
@@ -29,6 +32,7 @@ export default function Index({ setPage }) {
 
     const data = await signup(username, email, password);
     if (data) {
+      setLoading(false);
       const userData = data.data;
       dispatch(login(userData));
       setIsDone(true);
@@ -37,6 +41,7 @@ export default function Index({ setPage }) {
       }, 2500)
     }
     else {
+      setLoading(false);
       usernameRef.current.value = '';
       emailRef.current.value = '';
       passwordRef.current.value = '';
@@ -85,7 +90,7 @@ export default function Index({ setPage }) {
         </div>
       </div>
 
-      
+      {loading && <Loading />}
       {isDone && <Done />}
     </>
   )

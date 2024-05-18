@@ -1,9 +1,7 @@
 import React from 'react'
 import indexStyle from './index.module.css';
-import { useSelector } from 'react-redux';
 
-export default function Index({ clickable }) {
-    const userData = useSelector((state) => state.user.value.userData);
+export default function Index({ clickable, userData }) {
 
     return (
         <div className={indexStyle['container']}>

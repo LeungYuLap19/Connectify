@@ -3,6 +3,7 @@
     background-color: #efefef;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .post-item img {
