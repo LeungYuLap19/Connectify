@@ -36,7 +36,29 @@ async function getPostsByUserid(userid) {
     }
 }
 
+async function toggleLikeOnPost(userid, postid) {
+    try {
+        const res = await axios.post('http://localhost:3000/post/toggleLikeOnPost', {
+            userid: userid,
+            postid: postid
+        });
+
+        if (res.status === 200) {
+            return res.data;
+        }
+        else {
+            return null;
+        }
+    } catch (error) {
+        alert('Failed to toggle like');
+        return null;
+    }
+}
+
+
+
 export {
     createPost,
     getPostsByUserid,
+    toggleLikeOnPost,
 }

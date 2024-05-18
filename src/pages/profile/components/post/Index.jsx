@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import indexStyle from './index.module.css';
+import { ProfileContext } from '../../../../context/ProfileContext';
 
-export default function Index({ post, setPostData }) {
+export default function Index({ post }) {
+  const { setPostid } = useContext(ProfileContext);
+
   return (
     <div 
       className={indexStyle['post-item']}
       onClick={() => {
-        setPostData(post);
+        setPostid(post.id);
       }}
     >
         <img src={post.photo[0]} alt="post-image" />

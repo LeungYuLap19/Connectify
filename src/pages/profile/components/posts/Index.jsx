@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import indexStyle from './index.module.css';
-import { useSelector } from 'react-redux';
 import Post from '../post/Index';
+import { ProfileContext } from '../../../../context/ProfileContext';
+import PostLoading from '../../../../animations/PostLoading';
 
-export default function Index({ setPostData }) {
-    const postsData = useSelector((state) => state.posts.value.postsData);
+export default function Index() {
+    const { posts, setPostid, loading } = useContext(ProfileContext);
+
     return (
         <div className={indexStyle['container']}>
             <div className={indexStyle['separate']}>
@@ -14,12 +16,18 @@ export default function Index({ setPostData }) {
             </div>
 
             <div className={indexStyle['posts-grid']}>
-                {
-                    postsData.map((post, index) => {
-                        return (
-                            <Post post={post} setPostData={setPostData} key={index}/>
-                        )
-                    })
+            {
+                    loading ? (
+                        Array.from({ length: 3 }).map((_, index) => (
+                            <PostLoading key={index}/>
+                        ))
+                    ) : posts && posts.length > 0 ? (
+                        posts.map((post, index) => (
+                            <Post post={post} setPostid={setPostid} key={index} />
+                        ))
+                    ) : (
+                        <></>
+                    )
                 }
             </div>
         </div>

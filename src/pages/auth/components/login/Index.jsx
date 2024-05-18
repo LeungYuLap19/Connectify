@@ -2,11 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import indexStyle from './index.module.css';
 import Header from '../BrandHeader/Index'
 import useSignin from '../../hooks/useSignin';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from '../../../../store/slices/userSlice'
-import { storePosts } from '../../../../store/slices/postsSlice'
 import { useNavigate } from 'react-router-dom';
-import useGetPostsByUserid from '../../hooks/useGetPostsByUserid';
 import Loading from './../../../../animations/Loading';
 
 export default function Index({ setPage }) {
@@ -22,7 +20,6 @@ export default function Index({ setPage }) {
   }, []);
 
   const { signin } = useSignin();
-  const { getPosts } = useGetPostsByUserid();
   const handleSignin = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -32,15 +29,9 @@ export default function Index({ setPage }) {
     const data = await signin(indentifier, password);
     if(data) {
       const userData = data.data;
-      const posts = await getPosts(userData.id);
-      if (posts) {
-        const postsData = posts.data;
-        console.log(postsData);
-        dispatch(login(userData));
-        dispatch(storePosts(postsData));
-        setLoading(false);
-        navigate('/connectify/main');
-      }
+      dispatch(login(userData));
+      setLoading(false);
+      navigate('/connectify/main');
     }
     else {
       setLoading(false);

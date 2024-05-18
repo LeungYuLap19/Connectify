@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import indexStyle from './index.module.css';
 import PhotoSwiper from '../photoSwiper/Index';
 import Close from '../close/Index';
 import UserTag from '../userTag/Index';
 import Comment from '../comment/Index';
 import Like from '../like/Index';
-import DateTag from '../dateTag/Index';
 import CommentInput from '../commentInput/Index';
+import { ProfileContext } from '../../../context/ProfileContext';
 
-export default function Index({ postData, setPostData, userData }) {
+export default function Index() {
+    const { userData, posts, postid, setPostid } = useContext(ProfileContext);
+    const postData = posts.find((post) => post.id === postid);
 
     return (
         <div 
@@ -21,19 +23,19 @@ export default function Index({ postData, setPostData, userData }) {
                 <div className={indexStyle['panel']}>
                     <div className={indexStyle['header']}>
                         <UserTag clickable={false} userData={userData} />
-                        <Close close={setPostData}/>
+                        <Close close={setPostid}/>
                     </div>
 
                     <div className={indexStyle['comments']}>
-                        {/* for caption */}
                         <div className={indexStyle['comment']}>
-                            {/* for testing */}
                             <Comment comment={{comment: postData.caption, commentTime: postData.postTime}} userData={userData}/>
                         </div>
+
+                        {/* comments */}
                     </div>
 
                     <div className={indexStyle['likes']}>
-                        <Like postLikes={postData.likes.length}/>
+                        <Like />
                     </div>
 
                     <div className={indexStyle['comment-input']}>
