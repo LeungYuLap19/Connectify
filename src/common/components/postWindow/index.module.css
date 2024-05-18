@@ -68,10 +68,6 @@
     overflow-y: auto;
 }
 
-.comments::-webkit-scrollbar {
-    display: none;
-}
-
 .likes {
     display: flex;
     justify-content: flex-start;

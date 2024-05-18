@@ -1,15 +1,12 @@
 .container {
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .container * {
     width: 100%;
-}
-
-.container form {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .container input {

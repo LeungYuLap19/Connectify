@@ -55,10 +55,28 @@ async function toggleLikeOnPost(userid, postid) {
     }
 }
 
+async function addComment(comment, postid) {
+    try {
+        const res = await axios.post('http://localhost:3000/post/addComment', {
+            comment: comment,
+            postid: postid
+        });
 
+        if (res.status === 200) {
+            return res.data;
+        }
+        else {
+            return null;
+        }
+    } catch (error) {
+        alert('Failed to add comment');
+        return null;
+    }
+}
 
 export {
     createPost,
     getPostsByUserid,
     toggleLikeOnPost,
+    addComment
 }

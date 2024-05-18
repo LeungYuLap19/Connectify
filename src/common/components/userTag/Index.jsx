@@ -8,7 +8,7 @@ export default function Index({ clickable, userData }) {
             <div className={indexStyle['profile-icon']}>
                 <img src="/assets/images/default-icon.png" alt="user-icon" />
             </div>
-            <span>{!clickable ? userData.username : ''}</span>
+            <span>{userData.username}</span>
         </div>
     )
 }

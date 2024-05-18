@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useLayoutEffect } from 'react'
 import indexStyle from './index.module.css';
 import PhotoSwiper from '../photoSwiper/Index';
 import Close from '../close/Index';
@@ -28,10 +28,19 @@ export default function Index() {
 
                     <div className={indexStyle['comments']}>
                         <div className={indexStyle['comment']}>
-                            <Comment comment={{comment: postData.caption, commentTime: postData.postTime}} userData={userData}/>
+                            <Comment comment={{comment: postData.caption, commentTime: postData.postTime, user: userData}} />
                         </div>
 
                         {/* comments */}
+                        {
+                            postData.comments.map((comment, index) => {
+                                return (
+                                    <div className={indexStyle['comment']} key={index}>
+                                        <Comment comment={comment}/>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
 
                     <div className={indexStyle['likes']}>
