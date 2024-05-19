@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initState = {
-    postsData: null,
+    postsData: [],
+    lastPostTime: null
 }
 
 const postsSlice = createSlice({
@@ -9,11 +10,14 @@ const postsSlice = createSlice({
     initialState: { value: initState },
     reducers: {
         storePosts: (state, action) => {
-            state.value.postsData = action.payload;
+            state.value.postsData = [...state.value.postsData, ...action.payload];
+            if (state.value.postsData.length > 0) {
+                state.value.lastPostTime = state.value.postsData[state.value.postsData.length - 1].postTime;
+            }
         },
-        addPost: (state, action) => {
-            state.value.postsData = [action.payload, ...state.value.postsData];
-        },
+        // addPost: (state, action) => {
+        //     state.value.postsData = [action.payload, ...state.value.postsData];
+        // },
         togglePostLike: (state, action) => {
             const { postid, userid } = action.payload;
             const post = state.value.postsData.find((post) => post.id === postid);
@@ -24,9 +28,10 @@ const postsSlice = createSlice({
                     post.likes.push(userid);
                 }
             }
-        }
+        },
+
     }
 });
 
-export const { storePosts, addPost, togglePostLike } = postsSlice.actions;
+export const { storePosts, togglePostLike } = postsSlice.actions;
 export default postsSlice.reducer;

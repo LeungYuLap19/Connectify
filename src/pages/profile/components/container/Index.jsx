@@ -3,8 +3,8 @@ import indexStyle from './index.module.css';
 import Info from '../info/Index'
 import Posts from '../posts/Index'
 import PostWindow from '../../../../common/components/postWindow/Index';
-import useGetPostsByUserid from '../../../auth/hooks/useGetPostsByUserid';
 import { ProfileContext } from '../../../../context/ProfileContext';
+import useGetPostsByUserid from '../../../auth/hooks/useGetPostsByUserid';
 
 export default function Index({ userData }) {
   const [posts, setPosts] = useState(null);
@@ -48,7 +48,7 @@ export default function Index({ userData }) {
             </div>
           </div>
 
-          { postid && <PostWindow /> } 
+          { postid && <PostWindow localUser={localUser} posts={posts} postid={postid} setPostid={setPostid}/> } 
         </div>
       }
     </ProfileContext.Provider>

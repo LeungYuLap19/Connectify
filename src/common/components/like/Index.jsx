@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux';
 import useToggleLike from '../../hooks/useToggleLike';
 import { ProfileContext } from '../../../context/ProfileContext';
 
-export default function Index() {
-    const { posts, postid } = useContext(ProfileContext);
+export default function Index({ posts, postid }) {
     const postData = posts.find((post) => post.id === postid);
     const postLikes = postData.likes;
 

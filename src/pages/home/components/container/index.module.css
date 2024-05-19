@@ -1,0 +1,28 @@
+.container {
+    width: 100%;
+    padding: 5% 0% 2%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.wrapper {
+    width: 500px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.item {
+    width: 100%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+.item.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}

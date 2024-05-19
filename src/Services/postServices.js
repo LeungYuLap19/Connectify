@@ -74,9 +74,31 @@ async function addComment(comment, postid) {
     }
 }
 
+async function getPostsFromFollowing(userid, lastPostTime) {
+    try {
+        const res = await axios.get('http://localhost:3000/post/getPostsFromFollowing', {
+            params: {
+                userid: userid,
+                lastPostTime: lastPostTime,
+            },
+        });
+
+        if (res.status === 200) {
+            return res.data;
+        }
+        else {
+            return null;
+        }
+    } catch (error) {
+        alert('Failed to get posts');
+        return null;
+    }
+}
+
 export {
     createPost,
     getPostsByUserid,
     toggleLikeOnPost,
-    addComment
+    addComment,
+    getPostsFromFollowing
 }

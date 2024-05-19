@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../../../store/slices/userSlice'
 import { useNavigate } from 'react-router-dom';
 import Loading from './../../../../animations/Loading';
+import useGetFollowingPosts from '../../hooks/useGetFollowingPosts';
 
 export default function Index({ setPage }) {
   const navigate = useNavigate(); 
@@ -20,6 +21,7 @@ export default function Index({ setPage }) {
   }, []);
 
   const { signin } = useSignin();
+  const { getPosts } = useGetFollowingPosts();
   const handleSignin = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -29,6 +31,7 @@ export default function Index({ setPage }) {
     const data = await signin(indentifier, password);
     if(data) {
       const userData = data.data;
+      await getPosts(userData.id);
       dispatch(login(userData));
       setLoading(false);
       navigate('/connectify/main');

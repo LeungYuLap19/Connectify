@@ -8,8 +8,8 @@ import Like from '../like/Index';
 import CommentInput from '../commentInput/Index';
 import { ProfileContext } from '../../../context/ProfileContext';
 
-export default function Index() {
-    const { localUser, posts, postid, setPostid } = useContext(ProfileContext);
+export default function Index({ localUser, posts, postid, setPostid }) {
+    // const { localUser, posts, postid, setPostid } = useContext(ProfileContext);
     const postData = posts.find((post) => post.id === postid);
 
     return (
@@ -44,7 +44,7 @@ export default function Index() {
                     </div>
 
                     <div className={indexStyle['likes']}>
-                        <Like />
+                        <Like postid={postid} posts={posts}/>
                     </div>
 
                     <div className={indexStyle['comment-input']}>
