@@ -5,10 +5,6 @@ import DateTag from '../dateTag/Index';
 
 export default function Index({ comment }) {
 
-  useEffect(() => {
-    console.log(comment);
-  }, [comment]);
-
   return (
     <div className={indexStyle['container']}>
         <div className={indexStyle['header']}>

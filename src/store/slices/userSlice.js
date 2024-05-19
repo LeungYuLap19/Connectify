@@ -13,9 +13,13 @@ const userSlice = createSlice({
         },
         logout: (state) => {
             state.value = initState;
+        },
+        // 
+        modifyFollowings: (state, action) => {
+            state.value.userData.followings = action.payload;
         }
     }
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, modifyFollowings } = userSlice.actions;
 export default userSlice.reducer;

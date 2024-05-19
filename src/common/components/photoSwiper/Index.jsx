@@ -7,10 +7,6 @@ import { Pagination } from 'swiper/modules';
 
 export default function Index({ photos }) {
 
-    useEffect(() => {
-        console.log(photos);
-    }, [photos])
-
   return (
     <div className={indexStyle['container']}>
         <Swiper

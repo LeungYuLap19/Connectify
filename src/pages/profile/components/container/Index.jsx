@@ -10,6 +10,7 @@ export default function Index({ userData }) {
   const [posts, setPosts] = useState(null);
   const [postid, setPostid] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [localUser, setLocalUser] = useState(null);
 
   const { getPosts } = useGetPostsByUserid();
   useEffect(() => {
@@ -24,27 +25,32 @@ export default function Index({ userData }) {
       setLoading(false);
     }
     getPostByUserid();
+
+    setLocalUser(userData);
   }, [userData]);
 
   return (
-    <ProfileContext.Provider value={{ userData, posts, setPosts, postid, setPostid, loading }}>
-      <div className={indexStyle['container']}>
-        <div className={indexStyle['background']}>
+    <ProfileContext.Provider value={{ localUser, setLocalUser, posts, setPosts, postid, setPostid, loading }}>
+      {
+        localUser && 
+        <div className={indexStyle['container']}>
+          <div className={indexStyle['background']}>
 
-        </div>
-
-        <div className={indexStyle['profile']}>
-          <div className={indexStyle['profile-info']}>
-            <Info />
           </div>
-          
-          <div className={indexStyle['profile-posts']}>
-            <Posts />
-          </div>
-        </div>
 
-        { postid && <PostWindow /> } 
-      </div>
+          <div className={indexStyle['profile']}>
+            <div className={indexStyle['profile-info']}>
+              <Info />
+            </div>
+            
+            <div className={indexStyle['profile-posts']}>
+              <Posts />
+            </div>
+          </div>
+
+          { postid && <PostWindow /> } 
+        </div>
+      }
     </ProfileContext.Provider>
   )
 }

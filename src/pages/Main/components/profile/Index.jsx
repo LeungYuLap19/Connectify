@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import indexStyle from './index.module.css';
 import { useSelector } from 'react-redux';
 

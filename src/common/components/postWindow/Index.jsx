@@ -9,7 +9,7 @@ import CommentInput from '../commentInput/Index';
 import { ProfileContext } from '../../../context/ProfileContext';
 
 export default function Index() {
-    const { userData, posts, postid, setPostid } = useContext(ProfileContext);
+    const { localUser, posts, postid, setPostid } = useContext(ProfileContext);
     const postData = posts.find((post) => post.id === postid);
 
     return (
@@ -22,13 +22,13 @@ export default function Index() {
                 </div>
                 <div className={indexStyle['panel']}>
                     <div className={indexStyle['header']}>
-                        <UserTag clickable={false} userData={userData} />
+                        <UserTag clickable={false} userData={localUser} />
                         <Close close={setPostid}/>
                     </div>
 
                     <div className={indexStyle['comments']}>
                         <div className={indexStyle['comment']}>
-                            <Comment comment={{comment: postData.caption, commentTime: postData.postTime, user: userData}} />
+                            <Comment comment={{comment: postData.caption, commentTime: postData.postTime, user: localUser}} />
                         </div>
 
                         {/* comments */}
