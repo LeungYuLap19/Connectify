@@ -1,0 +1,47 @@
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.container input {
+    flex-grow: 1;
+    height: 100%;
+    border-radius: 10px;
+    border: 2px solid #efefef;
+    padding: 2px 10px;
+    transition: 0.5s;
+}
+
+.container input:focus {
+    outline: none;
+    border: 2px solid #406efe;
+}
+
+.container input::-webkit-search-cancel-button {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.container button {
+    height: 40px;
+    padding: 12px;
+    background-color: #406efe;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.5s;
+}
+
+.container button:hover {
+    transform: scale(1.1);
+}
+
+.container button img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    filter: invert(1);
+}

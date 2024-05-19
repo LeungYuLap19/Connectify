@@ -13,6 +13,7 @@ export default function Index({ userData }) {
 
   const { getPosts } = useGetPostsByUserid();
   useEffect(() => {
+    setPosts(null);
     async function getPostByUserid() {
       setLoading(true);
       const posts = await getPosts(userData.id);
@@ -23,7 +24,7 @@ export default function Index({ userData }) {
       setLoading(false);
     }
     getPostByUserid();
-  }, []);
+  }, [userData]);
 
   return (
     <ProfileContext.Provider value={{ userData, posts, setPosts, postid, setPostid, loading }}>
