@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import { toggleLikeOnPost } from '../../Services/postServices';
-import { ProfileContext } from '../../context/ProfileContext';
+import { togglePostLike } from '../../store/slices/postsSlice';
 
 const useToggleLike = () => {
-    const { posts, setPosts } = useContext(ProfileContext);
+    const dispatch = useDispatch();
 
-    const toggleLike = async (userid, postid) => {
+    const toggleLike = async (userid, postid, posts, setPosts) => {
         const data = await toggleLikeOnPost(userid, postid);
         const updatedLikes = data.likes;
 
@@ -15,7 +15,14 @@ const useToggleLike = () => {
         setPosts(updatedPosts);
     };
 
-    return { toggleLike };
+    const toggleLikeH = async (userid, postid) => {
+        const data = await toggleLikeOnPost(userid, postid);
+        const updatedLikes = data.likes;
+        console.log(updatedLikes)
+        dispatch(togglePostLike({ updatedLikes: updatedLikes, postid: postid }));
+    }
+
+    return { toggleLike, toggleLikeH };
 };
 
 export default useToggleLike;

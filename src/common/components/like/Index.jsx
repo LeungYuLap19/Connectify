@@ -1,32 +1,28 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import indexStyle from './index.module.css';
 import { useSelector } from 'react-redux';
 import useToggleLike from '../../hooks/useToggleLike';
-import { ProfileContext } from '../../../context/ProfileContext';
 
-export default function Index({ posts, postid }) {
-    const postData = posts.find((post) => post.id === postid);
-    const postLikes = postData.likes;
-
+export default function Index({ postData, posts, setPosts }) {
     const [liked, setLiked] = useState(false);
     const userData = useSelector((state) => state.user.value.userData);
-    const { toggleLike } = useToggleLike();
+    const { toggleLike, toggleLikeH } = useToggleLike();
 
     useEffect(() => {
-        if (postLikes.includes(userData.id)) {
+        if (postData.likes.includes(userData.id)) {
             setLiked(true);
         }
         else {
             setLiked(false);
         }
-    }, [postLikes]);
+    }, [postData.likes]);
 
     return (
         <div className={indexStyle['container']}>
             <div 
                 className={indexStyle['like']} 
-                onClick={async () => {
-                    await toggleLike(userData.id, postid);
+                onClick={() => {
+                    posts && setPosts ? toggleLike(userData.id, postData.id, posts, setPosts) : toggleLikeH(userData.id, postData.id);
                 }}
             >
                 <img src="\assets\images\heartOutline.png" alt="heartOutline" />
@@ -37,7 +33,7 @@ export default function Index({ posts, postid }) {
                 />
             </div>
 
-            <p>{postLikes.length} Likes</p>
+            <p>{postData.likes.length} Likes</p>
         </div>
     )
 }

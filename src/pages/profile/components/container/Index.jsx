@@ -48,7 +48,7 @@ export default function Index({ userData }) {
             </div>
           </div>
 
-          { postid && <PostWindow localUser={localUser} posts={posts} postid={postid} setPostid={setPostid}/> } 
+          { postid && <PostWindow postUser={localUser} posts={posts} setPosts={setPosts} postid={postid} setPostid={setPostid}/> } 
         </div>
       }
     </ProfileContext.Provider>

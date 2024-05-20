@@ -1,4 +1,3 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react'
 import indexStyle from './index.module.css';
 import PhotoSwiper from '../photoSwiper/Index';
 import Close from '../close/Index';
@@ -6,11 +5,11 @@ import UserTag from '../userTag/Index';
 import Comment from '../comment/Index';
 import Like from '../like/Index';
 import CommentInput from '../commentInput/Index';
-import { ProfileContext } from '../../../context/ProfileContext';
 
-export default function Index({ localUser, posts, postid, setPostid }) {
-    // const { localUser, posts, postid, setPostid } = useContext(ProfileContext);
+export default function Index({ postUser, posts, setPosts, postid, setPostid }) {
     const postData = posts.find((post) => post.id === postid);
+
+    console.log(postUser.username)
 
     return (
         <div 
@@ -22,16 +21,14 @@ export default function Index({ localUser, posts, postid, setPostid }) {
                 </div>
                 <div className={indexStyle['panel']}>
                     <div className={indexStyle['header']}>
-                        <UserTag clickable={false} userData={localUser} />
+                        <UserTag clickable={false} userData={postUser} />
                         <Close close={setPostid}/>
                     </div>
 
                     <div className={indexStyle['comments']}>
                         <div className={indexStyle['comment']}>
-                            <Comment comment={{comment: postData.caption, commentTime: postData.postTime, user: localUser}} />
+                            <Comment comment={{comment: postData.caption, commentTime: postData.postTime, user: postUser}} />
                         </div>
-
-                        {/* comments */}
                         {
                             postData.comments.map((comment, index) => {
                                 return (
@@ -44,11 +41,11 @@ export default function Index({ localUser, posts, postid, setPostid }) {
                     </div>
 
                     <div className={indexStyle['likes']}>
-                        <Like postid={postid} posts={posts}/>
+                        <Like postData={postData} posts={posts} setPosts={setPosts} />
                     </div>
 
                     <div className={indexStyle['comment-input']}>
-                        <CommentInput />
+                        <CommentInput postid={postData.id} posts={posts} setPosts={setPosts} />
                     </div>
                 </div>
             </div>

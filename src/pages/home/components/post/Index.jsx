@@ -3,6 +3,8 @@ import indexStyle from './index.module.css'
 import UserTag from '../../../../common/components/userTag/Index';
 import PhotoSwiper from '../../../../common/components/photoSwiper/Index';
 import DateTag from '../../../../common/components/dateTag/Index'
+import Like from '../../../../common/components/like/Index';
+import CommentInput from '../../../../common/components/commentInput/Index';
 
 export default function Index({ postData, setPostid }) {
     return (
@@ -18,7 +20,7 @@ export default function Index({ postData, setPostid }) {
             </div>
 
             <div className={indexStyle['likes']}>
-
+                <Like postData={postData} />
             </div>
 
             <div className={indexStyle['caption']}>
@@ -34,7 +36,7 @@ export default function Index({ postData, setPostid }) {
             </div>
 
             <div className={indexStyle['comment']}>
-
+                <CommentInput postid={postData.id}/>
             </div>
         </div>
     )

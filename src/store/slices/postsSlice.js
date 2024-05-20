@@ -19,19 +19,27 @@ const postsSlice = createSlice({
         //     state.value.postsData = [action.payload, ...state.value.postsData];
         // },
         togglePostLike: (state, action) => {
-            const { postid, userid } = action.payload;
-            const post = state.value.postsData.find((post) => post.id === postid);
-            if (post) {
-                if (post.likes.includes(userid)) {
-                    post.likes = post.likes.filter((id) => id !== userid);
-                } else {
-                    post.likes.push(userid);
+            const { updatedLikes, postid } = action.payload;
+            const updatedPosts = state.value.postsData.map((post) => {
+                if (post.id === postid) {
+                    return { ...post, likes: updatedLikes };
                 }
-            }
+                return post;
+            });
+            state.value.postsData = updatedPosts;
         },
-
+        addHomeComment: (state, action) => {
+            const { updatedComments, postid } = action.payload;
+            const updatedPosts = state.value.postsData.map((post) => {
+                if (post.id === postid) {
+                    return { ...post, comments: updatedComments };
+                }
+                return post;
+            });
+            state.value.postsData = updatedPosts;
+        }
     }
 });
 
-export const { storePosts, togglePostLike } = postsSlice.actions;
+export const { storePosts, togglePostLike, addHomeComment } = postsSlice.actions;
 export default postsSlice.reducer;

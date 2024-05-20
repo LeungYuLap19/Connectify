@@ -1,11 +1,11 @@
-import { useContext, useState } from "react"
+import { useDispatch } from 'react-redux';
 import { addComment } from '../../Services/postServices'
-import { ProfileContext } from "../../context/ProfileContext";
+import { addHomeComment } from '../../store/slices/postsSlice';
 
 const useAddComment = () => {
-    const { posts, setPosts, postid } = useContext(ProfileContext);
+    const dispatch = useDispatch(); 
 
-    const addPostComment = async (comment) => {
+    const addPostComment = async (comment, postid, posts, setPosts) => {
         const data = await addComment(comment, postid);
         const updatedComments = data.comments;
 
@@ -15,7 +15,13 @@ const useAddComment = () => {
         setPosts(updatedPosts);
     };
 
-    return { addPostComment };
+    const addPostCommentH = async (comment, postid) => {
+        const data = await addComment(comment, postid);
+        const updatedComments = data.comments;
+        dispatch(addHomeComment({ updatedComments, postid }));
+    }
+
+    return { addPostComment, addPostCommentH };
 }
 
 export default useAddComment;

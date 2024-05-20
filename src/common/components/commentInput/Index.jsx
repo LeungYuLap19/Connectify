@@ -3,11 +3,11 @@ import indexStyle from './index.module.css';
 import { useSelector } from 'react-redux';
 import useAddComment from '../../hooks/useAddComment';
 
-export default function Index() {
+export default function Index({ postid, posts, setPosts }) {
     const commentRef = useRef(null);
     const userData = useSelector((state) => state.user.value.userData);
 
-    const { addPostComment } = useAddComment();
+    const { addPostComment, addPostCommentH } = useAddComment();
     const addComment = () => {
         if (commentRef.current.value) {
             const comment = {
@@ -15,7 +15,7 @@ export default function Index() {
                 comment: commentRef.current.value,
                 commentTime: new Date().toISOString(),
             };
-            addPostComment(comment);
+            posts && setPosts ? addPostComment(comment, postid, posts, setPosts) : addPostCommentH(comment, postid);
             commentRef.current.value = '';
         }
     }
