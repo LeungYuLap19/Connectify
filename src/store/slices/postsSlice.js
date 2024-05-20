@@ -15,9 +15,6 @@ const postsSlice = createSlice({
                 state.value.lastPostTime = state.value.postsData[state.value.postsData.length - 1].postTime;
             }
         },
-        // addPost: (state, action) => {
-        //     state.value.postsData = [action.payload, ...state.value.postsData];
-        // },
         togglePostLike: (state, action) => {
             const { updatedLikes, postid } = action.payload;
             const updatedPosts = state.value.postsData.map((post) => {
@@ -37,9 +34,12 @@ const postsSlice = createSlice({
                 return post;
             });
             state.value.postsData = updatedPosts;
+        },
+        reset:(state) => {
+            state.value = initState;
         }
     }
 });
 
-export const { storePosts, togglePostLike, addHomeComment } = postsSlice.actions;
+export const { storePosts, togglePostLike, addHomeComment, reset } = postsSlice.actions;
 export default postsSlice.reducer;

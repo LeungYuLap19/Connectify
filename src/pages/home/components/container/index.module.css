@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    padding: 5% 0% 2%;
+    padding: 2% 0% 2%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -36,4 +36,13 @@
     cursor: pointer;
     font-size: 14px;
     padding: 10px 20px;
+    margin-bottom: 15px;
+}
+
+.post-loader {
+    opacity: 1;
+    border-radius: 15px;
+    overflow: hidden;
+    transform: none;
+    margin-bottom: 20px;
 }
