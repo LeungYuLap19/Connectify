@@ -26,3 +26,14 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+.getOlder {
+    height: 40px;
+    background-color: #406efe;
+    border: none;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 20px;
+}
