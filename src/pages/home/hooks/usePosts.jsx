@@ -12,6 +12,7 @@ function usePosts() {
   const [loading, setLoading] = useState(false);
   const [postid, setPostid] = useState(null);
   const [postUser, setPostUser] = useState(null);
+  const [getLatest, setGetLatest] = useState(false);
 
   useEffect(() => {
     if (postid) {
@@ -24,8 +25,9 @@ function usePosts() {
     const refreshPosts = async () => {
       await getPosts(userData.id);
       setLoading(false);
+      setGetLatest(false);
     };
-    if (lastPostTime === null) {
+    if (lastPostTime === null && getLatest) {
       refreshPosts();
     }
   }, [lastPostTime, userData.id, getPosts]);
@@ -49,6 +51,7 @@ function usePosts() {
     handleRefresh,
     handleLoadMore,
     setPostid,
+    setGetLatest
   };
 }
 
