@@ -2,37 +2,40 @@ import { createNotification, handleComment, handleFollow, handleLike } from "../
 
 const useNotification = () => {
     const likeNotification = async (userData, postUser, postData) => {
-        const notification = {
-            fromUser: {
-                username: userData.username,
-                icon: userData.icon
-            },
-            toUser: postUser.id,
-            post: postData.id,
-            dateTime: new Date().toISOString(),
-            message: 'liked your post'
+        if (userData.id !== postUser.id) {
+            const notification = {
+                fromUser: {
+                    username: userData.username,
+                    icon: userData.icon
+                },
+                toUser: postUser.id,
+                post: postData.id,
+                dateTime: new Date().toISOString(),
+                message: 'liked your post'
+            }
+            const data = await createNotification(notification);
+            notification.id = data.data;
+            await handleLike(notification);
         }
-        const data = await createNotification(notification);
-        console.log(data);
-        notification.id = data.data;
-        await handleLike(notification);
     }
 
     const commentNotification = async (userData, postUser, postData, comment) => {
-        const notification = {
-            fromUser: {
-                username: userData.username,
-                icon: userData.icon
-            },
-            toUser: postUser.id,
-            post: postData.id,
-            comment: comment,
-            dateTime: new Date().toISOString(),
-            message: 'commented on your post'
+        if (userData.id !== postUser.id) {
+            const notification = {
+                fromUser: {
+                    username: userData.username,
+                    icon: userData.icon
+                },
+                toUser: postUser.id,
+                post: postData.id,
+                comment: comment,
+                dateTime: new Date().toISOString(),
+                message: 'commented on your post'
+            }
+            const data = await createNotification(notification);
+            notification.id = data.data;
+            await handleComment(notification);
         }
-        const data = await createNotification(notification);
-        notification.id = data.data;
-        await handleComment(notification);
     }
 
     const followNotification = async (userData, user) => {
