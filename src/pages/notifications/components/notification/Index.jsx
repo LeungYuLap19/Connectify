@@ -3,13 +3,19 @@ import indexStyle from './index.module.css'
 import UserTag from '../../../../common/components/userTag/Index';
 import useClear from '../../hooks/useClear';
 import DateTag from '../../../../common/components/dateTag/Index';
+import useOpenPost from '../../hooks/useOpenPost';
 
-export default function Index({ notification, index }) {
+export default function Index({ notification, index, setPostData }) {
     const { useClearOne } = useClear();
+    const { getPost } = useOpenPost(setPostData);
 
     return (
         <div className={indexStyle['container']}>
-            <div className={indexStyle['left']}>
+            <div className={indexStyle['left']}
+                onClick={() => {
+                    getPost(notification.post, setPostData);
+                }}
+            >
                 <div className={indexStyle['header']}>
                     <UserTag userData={notification.fromUser} clickable={false}/>
                     <p>{notification.message}.</p>
