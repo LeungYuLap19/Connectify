@@ -36,7 +36,7 @@ export default function Index({ postData, setPostid }) {
             </div>
 
             <div className={indexStyle['comment']}>
-                <CommentInput postid={postData.id}/>
+                <CommentInput postData={postData}/>
             </div>
         </div>
     )

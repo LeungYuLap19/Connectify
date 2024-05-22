@@ -15,6 +15,10 @@ const useSocket = () => {
         socket.on('notification', (data) => {
             dispatch(storeNotification([data]));
         });
+
+        return () => {
+            socket.disconnect();
+        };
     }, [userData]);
 }
 

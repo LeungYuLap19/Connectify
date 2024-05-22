@@ -18,7 +18,7 @@ const notificationsSlice = createSlice({
                 return new Date(b.dateTime) - new Date(a.dateTime);
             });
         },
-        removeNotification: (state, action) => {
+        removeOne: (state, action) => {
             state.value.notificationsData.splice(action.payload, 1);
         },
         reset: (state) => {
@@ -27,5 +27,5 @@ const notificationsSlice = createSlice({
     }
 })  
 
-export const { storeNotification, removeNotification, reset } = notificationsSlice.actions;
+export const { storeNotification, removeOne, reset } = notificationsSlice.actions;
 export default notificationsSlice.reducer;

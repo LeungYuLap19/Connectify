@@ -1,5 +1,75 @@
 import axios from "axios";
 
+async function createNotification(notification) {
+    try {
+        const res = await axios.post('http://localhost:3000/notification/createNotification', {
+            notification: notification,
+        });
+
+        if (res.status === 200) {
+            return res.data;
+        }
+        else {
+            return null;
+        }
+    } catch (error) {
+        alert('Failed to create notification');
+        const res = error.response.data;
+        console.log(res.error);
+        return null;
+    }
+}
+
+async function getNotifications(userid) {
+    try {
+        const res = await axios.get(`http://localhost:3000/notification/getNotifications/${userid}`);
+
+        if (res.status === 200) {
+            return res.data;
+        }
+        else {
+            return null;
+        }
+    } catch (error) {
+        alert('Failed to get notifications');
+        const res = error.response.data;
+        console.log(res.error);
+        return null;
+    }
+}
+
+async function removeNotification(notificationid) {
+    try {
+        const res = await axios.post('http://localhost:3000/notification/removeNotification', {
+            notificationid: notificationid,
+        });
+
+        if (res.status === 200) {
+            console.log(res.data.message);
+        }
+    } catch (error) {
+        alert('Failed to remove notifications');
+        const res = error.response.data;
+        console.log(res.error);
+    }
+}
+
+async function removeAllNotifications(userid) {
+    try {
+        const res = await axios.post('http://localhost:3000/notification/removeAllNotifications', {
+            userid: userid
+        });
+
+        if (res.status === 200) {
+            console.log(res.data.message);
+        }
+    } catch (error) {
+        alert('Failed to remove notifications');
+        const res = error.response.data;
+        console.log(res.error);
+    }
+}
+
 async function handleLike(notification) {
     try {
         const res = await axios.post('http://localhost:3001/notifications/handleLike', {
@@ -13,7 +83,7 @@ async function handleLike(notification) {
             console.log(res.data.error);
         }
     } catch (error) {
-        alert('Failed to send notification');
+        // alert('Failed to send notification');
         const res = error.response.data;
         console.log(res.error);
     }
@@ -32,7 +102,7 @@ async function handleComment(notification) {
             console.log(res.data.error);
         }
     } catch (error) {
-        alert('Failed to send notification');
+        // alert('Failed to send notification');
         const res = error.response.data;
         console.log(res.error);
     }
@@ -51,7 +121,7 @@ async function handleFollow(notification) {
             console.log(res.data.error);
         }
     } catch (error) {
-        alert('Failed to send notification');
+        // alert('Failed to send notification');
         const res = error.response.data;
         console.log(res.error);
     }
@@ -60,5 +130,9 @@ async function handleFollow(notification) {
 export {
     handleLike,
     handleComment,
-    handleFollow
+    handleFollow,
+    createNotification,
+    getNotifications,
+    removeNotification,
+    removeAllNotifications,
 }

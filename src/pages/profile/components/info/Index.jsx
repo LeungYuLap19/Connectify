@@ -3,12 +3,14 @@ import indexStyle from './index.module.css';
 import { ProfileContext } from '../../../../context/ProfileContext';
 import useToggleFollow from '../../hooks/useToggleFollow';
 import { useSelector } from 'react-redux';
+import useNotification from '../../../../common/hooks/useNotification';
 
 export default function Index() {
     const userData = useSelector((state) => state.user.value.userData);
     const { localUser, posts } = useContext(ProfileContext);
     const { toggleFollow } = useToggleFollow();
     const [isButtonClicked, setIsButtonClicked] = useState(false);
+    const { followNotification } = useNotification();
     
     return (
         <div className={indexStyle['container']}>
@@ -20,6 +22,7 @@ export default function Index() {
                         ${localUser.followers.includes(userData.id) ? indexStyle['followed'] : ''}
                         ${isButtonClicked ? indexStyle['animate'] : ''}`}
                         onClick={() => {
+                            !localUser.followers.includes(userData.id) && followNotification(userData, localUser);
                             toggleFollow(localUser.id, userData.id);
                             setIsButtonClicked(true);
                             setTimeout(() => {

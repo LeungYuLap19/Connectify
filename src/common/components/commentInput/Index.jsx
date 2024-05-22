@@ -2,10 +2,12 @@ import React, { useRef } from 'react'
 import indexStyle from './index.module.css';
 import { useSelector } from 'react-redux';
 import useAddComment from '../../hooks/useAddComment';
+import useNotification from '../../hooks/useNotification';
 
-export default function Index({ postid, posts, setPosts }) {
+export default function Index({ postData, posts, setPosts }) {
     const commentRef = useRef(null);
     const userData = useSelector((state) => state.user.value.userData);
+    const { commentNotification } = useNotification();
 
     const { addPostComment, addPostCommentH } = useAddComment();
     const addComment = () => {
@@ -15,7 +17,8 @@ export default function Index({ postid, posts, setPosts }) {
                 comment: commentRef.current.value,
                 commentTime: new Date().toISOString(),
             };
-            posts && setPosts ? addPostComment(comment, postid, posts, setPosts) : addPostCommentH(comment, postid);
+            commentNotification(userData, postData.user, postData, commentRef.current.value);
+            posts && setPosts ? addPostComment(comment, postData.id, posts, setPosts) : addPostCommentH(comment, postData.id);
             commentRef.current.value = '';
         }
     }

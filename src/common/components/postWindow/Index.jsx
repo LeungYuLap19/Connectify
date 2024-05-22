@@ -43,7 +43,7 @@ export default function Index({ postUser, posts, setPosts, postid, setPostid }) 
                     </div>
 
                     <div className={indexStyle['comment-input']}>
-                        <CommentInput postid={postData.id} posts={posts} setPosts={setPosts} />
+                        <CommentInput postData={postData} posts={posts} setPosts={setPosts} />
                     </div>
                 </div>
             </div>

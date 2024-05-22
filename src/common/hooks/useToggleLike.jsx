@@ -18,7 +18,6 @@ const useToggleLike = () => {
     const toggleLikeH = async (userid, postid) => {
         const data = await toggleLikeOnPost(userid, postid);
         const updatedLikes = data.likes;
-        console.log(updatedLikes)
         dispatch(togglePostLike({ updatedLikes: updatedLikes, postid: postid }));
     }
 
