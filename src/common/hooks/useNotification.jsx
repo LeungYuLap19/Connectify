@@ -4,10 +4,7 @@ const useNotification = () => {
     const likeNotification = async (userData, postUser, postData) => {
         if (userData.id !== postUser.id) {
             const notification = {
-                fromUser: {
-                    username: userData.username,
-                    icon: userData.icon
-                },
+                fromUser: userData,
                 toUser: postUser.id,
                 post: postData.id,
                 dateTime: new Date().toISOString(),
@@ -22,10 +19,7 @@ const useNotification = () => {
     const commentNotification = async (userData, postUser, postData, comment) => {
         if (userData.id !== postUser.id) {
             const notification = {
-                fromUser: {
-                    username: userData.username,
-                    icon: userData.icon
-                },
+                fromUser: userData,
                 toUser: postUser.id,
                 post: postData.id,
                 comment: comment,
@@ -40,10 +34,7 @@ const useNotification = () => {
 
     const followNotification = async (userData, user) => {
         const notification = {
-            fromUser: {
-                username: userData.username,
-                icon: userData.icon
-            },
+            fromUser: userData,
             toUser: user.id,
             dateTime: new Date().toISOString(),
             message: 'followed you'

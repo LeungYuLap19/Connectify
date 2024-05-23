@@ -11,17 +11,21 @@ export default function Index({ notification, index, setPostData }) {
 
     return (
         <div className={indexStyle['container']}>
-            <div className={indexStyle['left']}
-                onClick={() => {
-                    getPost(notification.post, setPostData);
-                }}
-            >
+            <div className={indexStyle['left']}>
                 <div className={indexStyle['header']}>
-                    <UserTag userData={notification.fromUser} clickable={false}/>
-                    <p>{notification.message}.</p>
+                    <UserTag userData={notification.fromUser} clickable={true}/>
+                    <p
+                        onClick={() => {
+                            notification.post && getPost(notification.post, setPostData);
+                        }}
+                    >{notification.message}.</p>
                     <DateTag dateTime={notification.dateTime} isCreatePost={false}/>
                 </div>
-                { notification.comment && <p className={indexStyle['comment']}>{notification.comment}</p> }
+                { notification.comment && <p className={indexStyle['comment']}
+                    onClick={() => {
+                        notification.post && getPost(notification.post, setPostData);
+                    }}
+                >{notification.comment}</p> }
             </div>
             <button
                 onClick={() => {
