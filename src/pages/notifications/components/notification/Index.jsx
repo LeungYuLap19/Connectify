@@ -31,7 +31,9 @@ export default function Index({ notification, index, setPostData }) {
                 onClick={() => {
                     useClearOne(notification.id, index);
                 }} 
-            >Remove</button>
+            >
+                <img src="\assets\images\trash.png" alt="trash" />
+            </button>
         </div>
     )
 }

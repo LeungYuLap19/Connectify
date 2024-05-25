@@ -16,6 +16,22 @@ async function searchUsernames(input) {
     }
 }
 
+async function getUser(userid) {
+    try {
+        const res = await axios.get(`http://localhost:3000/user/getUser/${userid}`);
+
+        if (res.status === 200) {
+            return res.data;
+        }
+        else {
+            return null;
+        }
+    } catch (error) {
+        alert('Failed to get user');
+        return null;
+    }
+}
+
 async function toggleFollowUser(userid, followerid) {
     try {
         const res = await axios.post('http://localhost:3000/user/toggleFollowUser', {
@@ -37,5 +53,6 @@ async function toggleFollowUser(userid, followerid) {
 
 export {
     searchUsernames,
+    getUser,
     toggleFollowUser,
 }
