@@ -1,0 +1,51 @@
+.container {
+    width: 100%;
+    padding-top: 100px;
+}
+
+.item {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.my {
+    flex-direction: row-reverse;
+}
+
+.item img {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+}
+
+.my img {
+    margin-right: 0px;
+    margin-left: 10px;
+}
+
+.message {
+    max-width: 60%;
+    min-height: 40px;
+    background-color: #efefef;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px 15px;
+    border-radius: 10px;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+.my .message {
+    align-items: flex-end;
+    background-color: #406efe;
+    color: white;
+}
+
+.text {
+    font-size: 16px;
+}

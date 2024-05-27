@@ -11,14 +11,14 @@
     margin-bottom: 10px;
 }
 
-.section {
+.buttons {
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 0px 10px;
 }
 
-.section button {
+.buttons button {
     width: 30%;
     background-color: transparent;
     border: none;
@@ -36,16 +36,4 @@
     width: 100%;
     flex-grow: 1;
     overflow-y: auto;
-}
-
-.item {
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-.item:hover {
-    background-color: #efefef;
 }

@@ -18,19 +18,32 @@ async function createChatroom(chatroom) {
     }
 }
 
-async function addMessage() {
-    try {
-        
+async function addMessage(message, chatroomid) {
+    try {  
+        const res = await axios.post('http://localhost:3000/message/addMessage', {
+            message: message,
+            chatroomid: chatroomid
+        });
+
+        if (res.status === 200) {
+            console.log('message added')
+        }
     } catch (error) {
-        
+        alert('Failed to add message');
     }
 }
 
-async function removeChatroom() {
+async function removeChatroom(chatroomid) {
     try {
-        
+        const res = await axios.post('http://localhost:3000/message/removeChatroom', {
+            chatroomid: chatroomid
+        });
+
+        if (res.status === 200) {
+            console.log('chatroom removed');
+        }
     } catch (error) {
-        
+        alert('Failed to remove chatroom');
     }
 }
 

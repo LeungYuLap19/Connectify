@@ -1,6 +1,6 @@
 import Home from '../../../home/components/container/Index';
 import Search from '../../../search/components/container/Index';
-import Message from '../../../message/components/container/Index';
+import Message from '../../../chatroom/components/container/Index';
 import Notifications from '../../../notifications/components/container/Index';
 import Create from '../../../postCreate/components/container/Index';
 import Setting from '../../../setting/components/container/Index';

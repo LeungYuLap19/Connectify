@@ -15,12 +15,22 @@ const chatroomsSlice = createSlice({
                 return new Date(b.lastTime) - new Date(a.lastTime);
             });
         },
-        removeChatroom: (state, action) => {
-            // index
-            state.value.chatroomsData.splice(action.payload, 1);
+        chatroomRemove: (state, action) => {
+            const index = state.value.chatroomsData.find(chatroom => chatroom.id === action.payload);
+            state.value.chatroomsData.splice(index, 1);
         },
+        storeMessage: (state, action) => {
+            const { message, chatroomid } = action.payload;
+            const newChatroomsData = state.value.chatroomsData.map(chatroom => {
+                if (chatroom.id === chatroomid) {
+                    return {...chatroom, messages: [...chatroom.messages, message], lastTime: message.dateTime};
+                }
+                return chatroom
+            });
+            state.value.chatroomsData = newChatroomsData;
+        } 
     }
 });
 
-export const { storeChatroom, removeChatroom } = chatroomsSlice.actions;
+export const { storeChatroom, chatroomRemove, storeMessage } = chatroomsSlice.actions;
 export default chatroomsSlice.reducer;
