@@ -47,3 +47,13 @@
 .profile-text span {
     font-size: 12px;
 }
+
+@media screen and (max-width: 900px) {
+    .profile-text {
+        display: none;
+    }
+
+    .container {
+        padding: 10px 6px;
+    }
+}

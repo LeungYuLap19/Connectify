@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import indexStyle from './index.module.css';
-import Header from '../../../auth/components/BrandHeader/Index'
 import Profile from '../profile/Index';
 import Item from '../item/Index';
 import ProfilePage from '../../../profile/components/container/Index';
@@ -16,7 +15,10 @@ export default function Index() {
   return (
     <div className={indexStyle['container']}>
         <div className={indexStyle['navbar-header']}>
-            <Header />
+          <div className={indexStyle['header']}>
+              <img src="/assets/brand/logo-black.png" alt="Connectify-logo" />
+              <p>Connectify.</p>
+          </div>
         </div>
         
         <div 

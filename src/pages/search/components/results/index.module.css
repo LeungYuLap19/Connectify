@@ -11,6 +11,7 @@
     border: 2px solid #efefef;
     border-radius: 10px;
     transition: height 0.5s;
+    background-color: white;
 }
 
 .wrapper::-webkit-scrollbar {

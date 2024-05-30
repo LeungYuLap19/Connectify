@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import indexStyle from './index.module.css';
 import { ProfileContext } from '../../../../context/ProfileContext';
 
-export default function Index({ post }) {
-  const { setPostid } = useContext(ProfileContext);
+export default function Index({ post, setPostid }) {
+  // const { setPostid } = useContext(ProfileContext);
 
   return (
     <div 

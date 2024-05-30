@@ -25,7 +25,7 @@ export default function Index() {
         <div className={indexStyle['container']}>
             <input 
                 type="search" 
-                placeholder='Search for users'
+                placeholder='Search'
                 ref={searchRef}
                 onChange={(e) => handleOnChange(e.target.value.trim())}
             />

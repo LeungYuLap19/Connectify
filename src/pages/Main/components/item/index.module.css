@@ -56,3 +56,9 @@
 .clicked:hover {
     background-color: #3263f3;
 }
+
+@media screen and (max-width: 900px) {
+    .container p {
+        display: none;
+    }
+}

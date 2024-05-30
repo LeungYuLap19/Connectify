@@ -1,13 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import indexStyle from './index.module.css';
 import Navbar from '../navbar/Index';
 import { navListName } from '../navbar/navList';
 import { ClickedContext } from './../../../../context/ClickedContext';
 import useSocket from '../../hooks/useNotificationSocket';
+import useDiscovery from '../../hooks/useDiscovery';
 
 export default function Index() {
   const [itemClickedM, setItemClickedM] = useState(navListName[0]);
   useSocket();
+  // const { getDiscoveryPosts } = useDiscovery();
+
+  // useEffect(() => {
+  //   getDiscoveryPosts();
+  // }, []);
 
   return (
     <ClickedContext.Provider value={{ itemClickedM, setItemClickedM }}>

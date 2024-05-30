@@ -8,6 +8,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    transition: 0.5s;
 }
 
 .main-page {
@@ -16,4 +17,16 @@
     margin-left: 270px;
     display: flex;
     flex-direction: column;
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 900px) {
+    .main-navbar {
+        width: 90px
+    }
+
+    .main-page {
+        width: calc(100% - 90px);
+        margin-left: 90px;
+    }
 }

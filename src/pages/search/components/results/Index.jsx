@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import indexStyle from './index.module.css'
 import { SearchContext } from '../../../../context/SearchContext'
 import UserTag from '../../../../common/components/userTag/Index';
-import { useSelector } from 'react-redux';
 
 export default function Index() {
     const { searchResult } = useContext(SearchContext);
