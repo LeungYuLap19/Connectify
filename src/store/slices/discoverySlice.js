@@ -11,7 +11,6 @@ const discoverySlice = createSlice({
     reducers: {
         storeRandomPosts: (state, action) => {
             const { posts, lastPostIndex } = action.payload
-            console.log(lastPostIndex);
             state.value.randomPostsData = [...state.value.randomPostsData, ...posts];
             if (state.value.randomPostsData.length > 0) {
                 state.value.lastPostIndex = lastPostIndex;

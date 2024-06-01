@@ -1,11 +1,13 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer, useRef } from 'react'
 import indexStyle from './index.module.css';
 import { ChatroomContext } from '../../../../context/ChatroomContext';
 import List from '../list/Index';
 import Chat from '../chat/Index';
 import { useSelector } from 'react-redux';
+import Done from './../../../../animations/Done';
 
 export default function Index() {
+    const inputRef = useRef(null);
     const reducer = (state, action) => {
         switch (action.type) {
             case 'setSearchResults':
@@ -16,6 +18,8 @@ export default function Index() {
                 return { ...state,clickedData: action.payload };
             case 'setChatrooms':
                 return { ...state,chatrooms: action.payload };
+            case 'setDone':
+                return { ...state,done: action.payload };
             default:
                 return state;
         }
@@ -25,6 +29,8 @@ export default function Index() {
         selectedButton: 'followings',
         clickedData: null,
         chatrooms: null,
+        done: false,
+        inputRef: inputRef
     });
 
     const userData = useSelector(state => state.user.value.userData);
@@ -61,6 +67,11 @@ export default function Index() {
                     <Chat />
                 </div>
             </div>
+            {state.done && 
+            <div className={indexStyle['done-popup']}>
+                <Done />
+            </div>
+            }
         </ChatroomContext.Provider>
     )
 }

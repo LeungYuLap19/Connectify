@@ -34,6 +34,7 @@ export default function Index() {
             <div 
             onClick={() => {
               setNewChatroom(user);
+              state.inputRef.current.value = '';
               dispatch({ type: 'setSearchResults', payload: null });
             }}
             key={index} className={indexStyle['item']}>

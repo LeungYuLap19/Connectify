@@ -4,7 +4,7 @@ import { ChatroomContext } from '../../../../context/ChatroomContext';
 import useChatroomHooks from '../../hooks/useChatroomHooks';
 
 export default function Index() {
-  const { dispatch } = useContext(ChatroomContext);
+  const { state, dispatch } = useContext(ChatroomContext);
   const { searchUser } = useChatroomHooks();
 
   const handleOnChange = (input) => {
@@ -20,7 +20,8 @@ export default function Index() {
     <div className={indexStyle['container']}>
       <input 
       type="search" placeholder='Search user'
-      onChange={(e) => handleOnChange(e.target.value.trim())}/>
+      onChange={(e) => handleOnChange(e.target.value.trim())}
+      ref={state.inputRef}/>
     </div>
   )
 }

@@ -33,7 +33,6 @@ const useChatroomHooks = () => {
     const checkInChatrooms = (userid) => {
         return chatroomsData.some(chatroom => {
             const index = chatroom.users.findIndex(user => user.id === userid);
-            console.log(index);
             return index !== -1;
         });
     }

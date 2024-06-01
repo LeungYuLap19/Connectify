@@ -16,8 +16,11 @@ const chatroomsSlice = createSlice({
             });
         },
         chatroomRemove: (state, action) => {
-            const index = state.value.chatroomsData.find(chatroom => chatroom.id === action.payload);
-            state.value.chatroomsData.splice(index, 1);
+            const index = state.value.chatroomsData.findIndex(chatroom => chatroom.id === action.payload);
+            console.log(index, action.payload);
+            if (index !== -1) {
+                state.value.chatroomsData.splice(index, 1);
+            }
         },
         storeMessage: (state, action) => {
             const { message, chatroomid } = action.payload;
