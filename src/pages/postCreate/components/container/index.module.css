@@ -1,5 +1,5 @@
 .container {
-    height: calc(100vh - 10%);
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -20,8 +20,8 @@
 }
 
 .create-window-upload {
-    width: 40%;
-    aspect-ratio: 1/1.5;
+    height: 100%;
+    aspect-ratio: 1/2.5;
 }
 
 .create-window-input {
@@ -35,4 +35,10 @@
     width: 100vw;
     height: 100vh;
     z-index: 99;
+}
+
+@media screen and (width < 900px) {
+    .create-window-upload {
+        aspect-ratio: 1/3;
+    }
 }

@@ -8,7 +8,6 @@ import CommentInput from '../commentInput/Index';
 
 export default function Index({ postUser, posts, setPosts, postid, setPostid }) {
     const postData = posts.find((post) => post.id === postid);
-    console.log(postData);
 
     return (
         <div 

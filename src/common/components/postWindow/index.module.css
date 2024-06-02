@@ -28,6 +28,7 @@
     background-color: white;
     overflow: hidden;
     display: flex;
+    transition: 0.5s;
 }
 
 .photo {
@@ -80,4 +81,16 @@
 
 .comment-input{
     padding: 10px 15px 15px;
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        height: 500px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .container {
+        height: 400px;
+    }
 }

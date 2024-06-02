@@ -20,8 +20,16 @@ export default function Index({ post, setPost, done }) {
         <div className={indexStyle['container']}>
             <Swiper 
                 direction={'vertical'}
-                slidesPerView={1.5} 
                 grabCursor={true}
+
+                breakpoints={{
+                    900: {
+                        slidesPerView: 2.5,
+                    },
+                    0: {
+                        slidesPerView: 3
+                    }
+                }}
             >
                 {uploaded.length < 6 && (
                 <SwiperSlide>
@@ -40,7 +48,7 @@ export default function Index({ post, setPost, done }) {
                         onChange={handleFileChange}
                     />
                     <h1>+</h1>
-                    <p>Upload Photo</p>
+                    <p>{'Upload Photo (max 6)'}</p>
                     </div>
                 </SwiperSlide>
                 )}
