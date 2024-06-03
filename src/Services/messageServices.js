@@ -26,10 +26,25 @@ async function addMessage(message, chatroomid) {
         });
 
         if (res.status === 200) {
-            console.log('message added')
+            console.log('message added');
         }
     } catch (error) {
         alert('Failed to add message');
+    }
+}
+
+async function addPhoto(message, chatroomid) {
+    try {
+        const res = await axios.post('http://localhost:3000/message/addPhoto', {
+            message: message,
+            chatroomid: chatroomid
+        });
+
+        if (res.status === 200) {
+            console.log('photo added');
+        }
+    } catch (error) {
+        alert('Failed to send photo')
     }
 }
 
@@ -68,6 +83,7 @@ async function getChatroomsByUserid(userid) {
 export {
     createChatroom,
     addMessage,
+    addPhoto,
     removeChatroom,
     getChatroomsByUserid,
 }

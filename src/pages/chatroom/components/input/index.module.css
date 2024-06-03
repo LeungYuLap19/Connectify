@@ -32,10 +32,40 @@
     background-color: #406efe;
     cursor: pointer;
     border: none;
+    position: relative;
+    overflow: hidden;
 }
 
 .container button img {
     width: 20px;
     height: 20px;
     filter: invert(1);
+}
+
+.uploaded {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    filter: invert(0) !important;
+}
+
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.layer:hover {
+    opacity: 1;
 }

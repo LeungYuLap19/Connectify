@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import DateTag from '../../../../common/components/dateTag/Index';
 
 export default function Index() {
-  const { state } = useContext(ChatroomContext);
+  const { state, dispatch } = useContext(ChatroomContext);
   const userData = useSelector(state => state.user.value.userData);
 
   return (
@@ -14,11 +14,16 @@ export default function Index() {
         state.clickedData.messages.map((message, index) => {
           return (
             <div className={`${indexStyle['item']} ${message.fromUser === userData.id ? indexStyle['my'] : ''}`} key={index}>
-              <img src="\assets\images\default-icon.png" alt="user-icon" />
+              <img className={indexStyle['icon']} src="\assets\images\default-icon.png" alt="user-icon" />
+              { message.photo ? 
+              <div className={indexStyle['photo']}>
+                <img src={message.photo} alt="photo"
+                onClick={() => dispatch({ type: 'setPopup', payload: message.photo })}/>
+              </div> : 
               <div className={indexStyle['message']}>
                 <p className={indexStyle['text']}>{message.message}</p>
                 <DateTag dateTime={message.dateTime} isCreatePost={false}/>
-              </div>
+              </div> }
             </div>
           )
         })

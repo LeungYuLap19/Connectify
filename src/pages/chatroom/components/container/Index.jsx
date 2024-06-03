@@ -5,6 +5,7 @@ import List from '../list/Index';
 import Chat from '../chat/Index';
 import { useSelector } from 'react-redux';
 import Done from './../../../../animations/Done';
+import Popup from '../popup/Index';
 
 export default function Index() {
     const inputRef = useRef(null);
@@ -20,6 +21,8 @@ export default function Index() {
                 return { ...state,chatrooms: action.payload };
             case 'setDone':
                 return { ...state,done: action.payload };
+            case 'setPopup':
+                return { ...state,popupPhoto: action.payload };
             default:
                 return state;
         }
@@ -30,7 +33,8 @@ export default function Index() {
         clickedData: null,
         chatrooms: null,
         done: false,
-        inputRef: inputRef
+        inputRef: inputRef,
+        popupPhoto: null
     });
 
     const userData = useSelector(state => state.user.value.userData);
@@ -72,6 +76,7 @@ export default function Index() {
                 <Done />
             </div>
             }
+            { state.popupPhoto && <Popup photo={state.popupPhoto}/> }
         </ChatroomContext.Provider>
     )
 }

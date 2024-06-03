@@ -53,7 +53,7 @@ export default function Index() {
                 <div className={indexStyle['right']}>
                   <p className={indexStyle['username']}>{user.username}</p>
                   <div className={indexStyle['preview']}>
-                    <p className={indexStyle['message']}>{chatroom.messages[chatroom.messages.length - 1].message}</p>
+                    <p className={indexStyle['message']}>{chatroom.messages?.[chatroom.messages.length - 1]?.message || 'sent a photo'}</p>
                     <DateTag isCreatePost={false} dateTime={chatroom.lastTime}/>
                   </div>
                 </div>

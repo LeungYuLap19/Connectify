@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ChatroomContext } from "../../../context/ChatroomContext"
 import { getUser, searchUsernames } from "../../../Services/userServices";
 import { useContext } from "react";
-import { addMessage, createChatroom, removeChatroom } from "../../../Services/messageServices";
+import { addMessage, addPhoto, createChatroom, removeChatroom } from "../../../Services/messageServices";
 import { chatroomRemove, storeChatroom, storeMessage } from '../../../store/slices/chatroomsSlice';
 import socket from "../../../Services/socketConfig";
 
@@ -52,26 +52,28 @@ const useChatroomHooks = () => {
         setUser(data.data);
     }
 
-    const createNewChatroom = async (user, message) => {
+    const createNewChatroom = async (user, content, isPhoto = false) => {
         const newMessage = {
             fromUser: userData.id,
             toUser: user.id,
-            message: message,
             dateTime: new Date().toISOString(),
         }
+
+        isPhoto ? newMessage.photo = content : newMessage.message = content;
+
         const newChatroom = { ...state.clickedData, messages: [newMessage], lastTime: newMessage.dateTime };
         const data = await createChatroom(newChatroom);
         newChatroom.id = data.data;
         socket.emit('chatroom', newChatroom);
         dispatch({ type: 'setClickedData', payload: newChatroom });
         reduxDispatch(storeChatroom([newChatroom]));
+        return newChatroom.id;
     }
 
     const handleRemoveChatroom = async (user, chatroomid) => {
         await removeChatroom(chatroomid);
         socket.emit('chatroomRemoved', { toUser: user.id, chatroomid: chatroomid });
         reduxDispatch(chatroomRemove(chatroomid));
-        // dispatch({ type: 'setClickedData', payload: null });
     }
 
     const handleSendMessage = async (chatroomid, user, message) => {
@@ -84,13 +86,24 @@ const useChatroomHooks = () => {
         await addMessage(newMessage, chatroomid);
         socket.emit('message', { message: newMessage, chatroomid: chatroomid });
         reduxDispatch(storeMessage({ message: newMessage, chatroomid: chatroomid }));
+    }
 
-        // const newChatroom = {...state.clickedData, messages: [...state.clickedData.messages, newMessage], lastTime: message.dateTime};
-        // dispatch({ type: 'setClickedData', payload: newChatroom });
+    const handleSendPhoto = async (chatroomid, user, photo) => {
+        const newMessage = {
+            fromUser: userData.id,
+            toUser: user.id,
+            photo: photo,
+            dateTime: new Date().toISOString()
+        }
+
+        await addPhoto(newMessage, chatroomid);
+        socket.emit('message', { message: newMessage, chatroomid: chatroomid });
+        reduxDispatch(storeMessage({ message: newMessage, chatroomid: chatroomid }));
     }
 
     return { searchUser, setNewChatroom, getUserByid, 
-        createNewChatroom, handleRemoveChatroom, handleSendMessage };
+        createNewChatroom, handleRemoveChatroom, handleSendMessage,
+        handleSendPhoto };
 }
 
 export default useChatroomHooks;
