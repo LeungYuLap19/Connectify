@@ -4,6 +4,8 @@ import { ProfileContext } from '../../../../context/ProfileContext';
 import useToggleFollow from '../../hooks/useToggleFollow';
 import { useSelector } from 'react-redux';
 import useNotification from '../../../../common/hooks/useNotification';
+import Popup from '../popup/Index';
+import { getListUsers } from '../../../../Services/userServices';
 
 export default function Index() {
     const userData = useSelector((state) => state.user.value.userData);
@@ -11,6 +13,9 @@ export default function Index() {
     const { toggleFollow } = useToggleFollow();
     const [isButtonClicked, setIsButtonClicked] = useState(false);
     const { followNotification } = useNotification();
+
+    const [popup, setPopup] = useState(false);
+    const [list, setList] = useState(null);
     
     return (
         <div className={indexStyle['container']}>
@@ -40,15 +45,32 @@ export default function Index() {
                     <p>{posts ? posts.length : '0'}</p>
                     <p>Posts</p>
                 </div>
-                <div>
+                <div 
+                onClick={async () => {
+                    const listUsers = await getListUsers(localUser.followers);
+                    setPopup(true);
+                    setList(listUsers.data);
+                }}>
                     <p>{localUser.followers.length}</p>
                     <p>Followers</p>
                 </div>
-                <div>
+                <div 
+                onClick={async () => {
+                    const listUsers = await getListUsers(localUser.followings);
+                    setPopup(true);
+                    setList(listUsers.data);
+                }}>
                     <p>{localUser.followings.length}</p>
                     <p>Followings</p>
                 </div>
             </div>
+
+            {
+                popup && list && 
+                <div className={indexStyle['popup']}>
+                    <Popup setPopup={setPopup} setList={setList} list={list} />
+                </div>
+            }
         </div>
     )
 }

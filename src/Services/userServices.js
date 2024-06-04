@@ -51,8 +51,27 @@ async function toggleFollowUser(userid, followerid) {
     }
 }
 
+async function getListUsers(list) {
+    try {
+        const res = await axios.post('http://localhost:3000/user/getListUsers', {
+            list: list
+        });
+
+        if (res.status === 200) {
+            return res.data;
+        }
+        else {
+            return null;
+        }
+    } catch (error) {
+        alert('Failed getting users');
+        return null;
+    }
+}
+
 export {
     searchUsernames,
     getUser,
     toggleFollowUser,
+    getListUsers
 }
