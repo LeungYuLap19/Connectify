@@ -5,6 +5,7 @@ import { InView } from 'react-intersection-observer';
 import PostWindow from '../../../../common/components/postWindow/Index';
 import DotLoading from '../../../../animations/DotLoading';
 import usePosts from '../../hooks/usePosts';
+import Discovery from '../discovery/Index';
 
 export default function Index() {
   const {
@@ -74,6 +75,10 @@ export default function Index() {
       {postid && postUser && (
         <PostWindow postUser={postUser} posts={postsData} postid={postid} setPostid={setPostid} />
       )}
+
+      <div className={indexStyle['discovery']}>
+        <Discovery />
+      </div>
     </div>
   );
 }

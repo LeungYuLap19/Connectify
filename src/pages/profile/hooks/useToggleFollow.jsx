@@ -3,6 +3,7 @@ import { ProfileContext } from "../../../context/ProfileContext"
 import { toggleFollowUser } from "../../../Services/userServices";
 import { useDispatch } from "react-redux";
 import { modifyFollowings } from '../../../store/slices/userSlice';
+import { removeDiscoverUser } from '../../../store/slices/discoverySlice';
 
 const useToggleFollow = () => {
     const { localUser, setLocalUser } = useContext(ProfileContext);
@@ -18,6 +19,7 @@ const useToggleFollow = () => {
         setLocalUser(updatedUser);
 
         dispatch(modifyFollowings(updatedFollowings));
+        dispatch(removeDiscoverUser(userid));
     }
 
     return { toggleFollow };

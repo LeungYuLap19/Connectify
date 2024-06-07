@@ -5,15 +5,18 @@ import { navListName } from '../navbar/navList';
 import { ClickedContext } from './../../../../context/ClickedContext';
 import useSocket from '../../hooks/useNotificationSocket';
 import useDiscovery from '../../hooks/useDiscovery';
+import useWeather from '../../hooks/useWeather';
 
 export default function Index() {
   const [itemClickedM, setItemClickedM] = useState(navListName[0]);
   useSocket();
-  // const { getDiscoveryPosts } = useDiscovery();
+  const { getDiscoverUsers } = useDiscovery();
+  const { getLocWeather } = useWeather();
 
-  // useEffect(() => {
-  //   getDiscoveryPosts();
-  // }, []);
+  useEffect(() => {
+    getDiscoverUsers();
+    getLocWeather();
+  }, []);
 
   return (
     <ClickedContext.Provider value={{ itemClickedM, setItemClickedM }}>

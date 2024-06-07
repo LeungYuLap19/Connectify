@@ -1,6 +1,7 @@
 /* HTML: <div class="loader"></div> */
 .loader {
   width: 40px;
+  flex-shrink: 0;
   aspect-ratio: 4;
   --_g: no-repeat radial-gradient(circle closest-side, #406efe 90%, #0000);
   background: 

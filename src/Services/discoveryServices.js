@@ -1,12 +1,9 @@
 import axios from "axios";
 
-async function randomPosts(userid, lastPostIndex) {
+async function discoverUsers(userid) {
     try {
-        const res = await axios.post('http://localhost:3000/discovery/randomPosts', {
-            userid: userid,
-            lastPostIndex: lastPostIndex
-        });
-
+        const res = await axios.get(`http://localhost:3000/discovery/discoverUsers/${userid}`);
+        
         if (res.status === 200) {
             return res.data;
         }
@@ -14,11 +11,11 @@ async function randomPosts(userid, lastPostIndex) {
             return null;
         }
     } catch (error) {
-        alert('Failed to get posts');
+        alert('Failed to get users');
         return null;
     }
 }
 
 export {
-    randomPosts
+    discoverUsers
 }
