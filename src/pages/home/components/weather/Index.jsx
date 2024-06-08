@@ -4,10 +4,6 @@ import { useSelector } from 'react-redux';
 
 export default function Index() {
     const weather = useSelector(state => state.discovery.value.weather);
-    useEffect(() => {
-        console.log(weather);
-    }, [weather]);
-
     return (
         <div className={indexStyle['container']}>
             <>

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { discoverUsers } from "../../../Services/discoveryServices";
-import { storeDiscoverUsers } from "../../../store/slices/discoverySlice";
+import { discoverPosts, discoverUsers } from "../../../Services/discoveryServices";
+import { storeDiscoverUsers, storeDiscoverPosts} from "../../../store/slices/discoverySlice";
 
 const useDiscovery = () => {
     const dispatch = useDispatch();
@@ -11,7 +11,12 @@ const useDiscovery = () => {
         dispatch(storeDiscoverUsers(data.data));
     }
 
-    return { getDiscoverUsers };
+    const getDiscoveryPosts = async () => {
+        const data = await discoverPosts(userData.id);
+        dispatch(storeDiscoverPosts(data.data));
+    }
+
+    return { getDiscoverUsers, getDiscoveryPosts };
 }
 
 export default useDiscovery;

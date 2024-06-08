@@ -5,7 +5,8 @@ import useGetFollowingPosts from './../../auth/hooks/useGetFollowingPosts';
 
 function usePosts() {
   const dispatch = useDispatch();
-  const postsData = useSelector((state) => state.posts.value.postsData);
+  const postsData2 = useSelector((state) => state.posts.value.postsData);
+  const discoverPosts = useSelector(state => state.discovery.value.discoverPosts);
   const lastPostTime = useSelector((state) => state.posts.value.lastPostTime);
   const userData = useSelector((state) => state.user.value.userData);
   const { getPosts } = useGetFollowingPosts();
@@ -14,12 +15,26 @@ function usePosts() {
   const [postUser, setPostUser] = useState(null);
   const [getLatest, setGetLatest] = useState(false);
 
+  const [postsData, setPostsData] = useState(null);
+
   useEffect(() => {
     if (postid) {
-      const postIndex = postsData.findIndex((post) => post.id === postid);
-      setPostUser(postsData[postIndex].user);
+      let postIndex = discoverPosts.findIndex((post) => post.id === postid);
+      let postSource = discoverPosts;
+      setPostsData(postSource);
+
+      if (postIndex === -1) {
+        postIndex = postsData2.findIndex((post) => post.id === postid);
+        postSource = postsData2;
+        setPostsData(postSource);
+      }
+      if (postIndex !== -1) {
+        setPostUser(postSource[postIndex].user);
+      } else {
+        setPostUser(null);
+      }
     }
-  }, [postid, postsData]);
+  }, [postid, discoverPosts, postsData2]);
 
   useEffect(() => {
     const refreshPosts = async () => {
@@ -44,6 +59,7 @@ function usePosts() {
   };
 
   return {
+    postsData2,
     postsData,
     postid,
     postUser,

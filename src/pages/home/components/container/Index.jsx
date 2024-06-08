@@ -9,6 +9,7 @@ import Discovery from '../discovery/Index';
 
 export default function Index() {
   const {
+    postsData2,
     postsData,
     postid,
     postUser,
@@ -22,22 +23,26 @@ export default function Index() {
   return (
     <div className={indexStyle.container}>
       <div className={indexStyle.wrapper}>
-        {!loading &&
-          <button 
-            className={indexStyle['getOlder']} 
-            onClick={() => {
-              handleRefresh();
-              setGetLatest(true);
-            }}
-          >
-            <img src='\assets\images\reload.png' alt='reload'/>
-          </button>}
+        <div className={indexStyle['header']}>
+          <h1>Home Feed</h1>
+          {!loading &&
+            <button 
+              className={indexStyle['getOlder']} 
+              onClick={() => {
+                handleRefresh();
+                setGetLatest(true);
+              }}
+            >
+              <img src='\assets\images\reload.png' alt='reload'/>
+            </button>}
+        </div>
+        
         { loading && <DotLoading /> }
 
         {
-          postsData.length > 0 && (
+          postsData2.length > 0 && (
             <>
-              {postsData.map((postData, index) => (
+              {postsData2.map((postData, index) => (
                 <InView
                   key={index}
                   as="div"

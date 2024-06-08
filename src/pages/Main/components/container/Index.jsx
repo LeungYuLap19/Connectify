@@ -10,10 +10,11 @@ import useWeather from '../../hooks/useWeather';
 export default function Index() {
   const [itemClickedM, setItemClickedM] = useState(navListName[0]);
   useSocket();
-  const { getDiscoverUsers } = useDiscovery();
+  const { getDiscoverUsers, getDiscoveryPosts } = useDiscovery();
   const { getLocWeather } = useWeather();
 
   useEffect(() => {
+    getDiscoveryPosts();
     getDiscoverUsers();
     getLocWeather();
   }, []);

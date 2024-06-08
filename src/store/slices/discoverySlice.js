@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initState = {
+    discoverPosts: [],
     discoverUsers: [],
     weather: {},
 }
@@ -9,6 +10,9 @@ const discoverySlice = createSlice({
     name: 'discovery',
     initialState: { value: initState },
     reducers: {
+        storeDiscoverPosts: (state, action) => {
+            state.value.discoverPosts = [...action.payload];
+        },
         storeDiscoverUsers: (state, action) => {
             state.value.discoverUsers = [...action.payload];
         },
@@ -23,5 +27,5 @@ const discoverySlice = createSlice({
     }
 });
 
-export const { storeDiscoverUsers, removeDiscoverUser, setCurrWeather } = discoverySlice.actions;
+export const { storeDiscoverPosts, storeDiscoverUsers, removeDiscoverUser, setCurrWeather } = discoverySlice.actions;
 export default discoverySlice.reducer;

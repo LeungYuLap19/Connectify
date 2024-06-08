@@ -9,6 +9,7 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.2);
     animation: 0.5s fadein;
+    z-index: 9999;
 }
 
 @keyframes fadein {
