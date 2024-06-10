@@ -40,7 +40,7 @@ const useChatroomHooks = () => {
     const setNewChatroom = (user) => {
         const chatroom = {
             id: null,
-            users: [{id: userData.id, username: userData.username}, {id: user.id, username: user.username}],
+            users: [{id: userData.id, username: userData.username, icon: userData.icon}, {id: user.id, username: user.username, icon: user.icon}],
             lastTime: null,
             messages: [],
         }

@@ -29,7 +29,7 @@ export default function Index() {
             <Header user={user}/>
           </div>
           <div className={indexStyle['record']}>
-            <Record />
+            <Record user={user}/>
           </div>
           <div className={indexStyle['input']}>
             <Input user={user}/>

@@ -26,6 +26,10 @@
     margin-left: 10px;
 }
 
+.icon {
+    border-radius: 50%;
+}
+
 .message {
     max-width: 60%;
     min-height: 40px;

@@ -49,7 +49,10 @@ export default function Index() {
             onClick={() => dispatch({ type: 'setClickedData', payload: chatroom })}
             key={index} className={indexStyle['item']}>
               <div className={indexStyle['wrapper']}>
-                <img src="\assets\images\default-icon.png" alt="user-icon" />
+                <img 
+                className={indexStyle['icon']}
+                src={user.icon ? user.icon : "/assets/images/default-icon.png"} 
+                alt="user-icon" />
                 <div className={indexStyle['right']}>
                   <p className={indexStyle['username']}>{user.username}</p>
                   <div className={indexStyle['preview']}>

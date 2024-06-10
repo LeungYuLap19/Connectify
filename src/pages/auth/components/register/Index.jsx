@@ -3,7 +3,7 @@ import indexStyle from './index.module.css';
 import Header from '../BrandHeader/Index'
 import useSignup from '../../hooks/useSignup';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from '../../../../store/slices/userSlice'
 import Done from '../../../../animations/Done';
 import Loading from '../../../../animations/Loading';

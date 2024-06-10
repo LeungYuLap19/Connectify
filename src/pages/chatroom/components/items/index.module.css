@@ -29,6 +29,10 @@
     margin-right: 10px;
 }
 
+.icon {
+    border-radius: 50%;
+}
+
 .right {
     width: calc(100% - 50px);
 }

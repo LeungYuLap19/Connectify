@@ -14,12 +14,17 @@ const userSlice = createSlice({
         logout: (state) => {
             state.value = initState;
         },
-        // 
         modifyFollowings: (state, action) => {
             state.value.userData.followings = action.payload;
+        },
+        modifyIcon: (state, action) => {
+            state.value.userData.icon = action.payload;
+        },
+        modifyBackground: (state, action) => {
+            state.value.userData.background = action.payload;
         }
     }
 });
 
-export const { login, logout, modifyFollowings } = userSlice.actions;
+export const { login, logout, modifyFollowings, modifyIcon, modifyBackground } = userSlice.actions;
 export default userSlice.reducer;

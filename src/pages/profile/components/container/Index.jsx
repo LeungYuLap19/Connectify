@@ -5,6 +5,7 @@ import Posts from '../posts/Index'
 import PostWindow from '../../../../common/components/postWindow/Index';
 import { ProfileContext } from '../../../../context/ProfileContext';
 import useGetPostsByUserid from '../../../auth/hooks/useGetPostsByUserid';
+import Background from '../background/Index';
 
 export default function Index({ userData }) {
   const [posts, setPosts] = useState(null);
@@ -35,7 +36,7 @@ export default function Index({ userData }) {
         localUser && 
         <div className={indexStyle['container']}>
           <div className={indexStyle['background']}>
-
+            <Background />
           </div>
 
           <div className={indexStyle['profile']}>

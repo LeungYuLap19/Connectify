@@ -19,7 +19,7 @@
     overflow-y: auto;
     overflow-x: visible;
     padding: 0px 20px 5%;
-    padding-top: calc(30px + 2%);
+    padding-top: calc(20px + 2%);
 }
 
 .wrapper::-webkit-scrollbar {
@@ -38,7 +38,7 @@
 
 .discovery {
     width: 25%;
-    padding-top: calc(30px + 2%);
+    padding-top: calc(20px + 2%);
 }
 
 .item {

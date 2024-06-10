@@ -69,9 +69,41 @@ async function getListUsers(list) {
     }
 }
 
+async function setIcon(userid, image) {
+    try {
+        const res = await axios.post('http://localhost:3000/user/setIcon', {
+            userid: userid,
+            image: image
+        })
+
+        if (res.status === 200) {
+            console.log('set icon');
+        }
+    } catch (error) {
+        alert('Failed setting icon');
+    }
+}
+
+async function setBackground(userid, image) {
+    try {
+        const res = await axios.post('http://localhost:3000/user/setBackground', {
+            userid: userid,
+            image: image
+        })
+
+        if (res.status === 200) {
+            console.log('set background');
+        }
+    } catch (error) {
+        alert('Failed setting background');
+    }
+}
+
 export {
     searchUsernames,
     getUser,
     toggleFollowUser,
-    getListUsers
+    getListUsers,
+    setIcon,
+    setBackground
 }

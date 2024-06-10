@@ -23,9 +23,7 @@ export default function Index({ setPage }) {
   }, []);
 
   const { signin } = useSignin();
-  const { getPosts } = useGetFollowingPosts();
   const { getNotificationsByUserid } = useGetNotifications();
-  const { getMessages } = useGetMessages();
   const handleSignin = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -35,9 +33,7 @@ export default function Index({ setPage }) {
     const data = await signin(indentifier, password);
     if(data) {
       const userData = data.data;
-      await getPosts(userData.id);
       await getNotificationsByUserid(userData.id);
-      await getMessages(userData.id);
       dispatch(login(userData));
       setLoading(false);
       navigate('/connectify/main');

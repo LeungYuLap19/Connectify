@@ -17,7 +17,9 @@ export default function Index({ clickable = false , userData }) {
             }}
         >
             <div className={indexStyle['profile-icon']}>
-                <img src="/assets/images/default-icon.png" alt="user-icon" />
+                <img 
+                src={userData.icon ? userData.icon : "/assets/images/default-icon.png"} 
+                alt="user-icon" />
             </div>
             <span>{userData.username}</span>
         </div>

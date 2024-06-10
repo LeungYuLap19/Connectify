@@ -8,7 +8,9 @@ export default function Index() {
     return (
         <div className={indexStyle['container']}>
             <div className={indexStyle['profile-icon']}>
-                <img src="/assets/images/default-icon.png" alt="user-icon" />
+                <img 
+                src={user.icon ? user.icon : "/assets/images/default-icon.png"} 
+                alt="user-icon" />
             </div>
 
             <div className={indexStyle['profile-text']}>
