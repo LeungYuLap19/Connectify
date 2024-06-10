@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import indexStyle from './index.module.css';
 import { ClickedContext } from './../../../context/ClickedContext';
 import ProfilePage from '../../../pages/profile/components/container/Index'
+import { getUser } from '../../../Services/userServices';
 
 export default function Index({ clickable = false , userData }) {
 
@@ -10,9 +11,11 @@ export default function Index({ clickable = false , userData }) {
     return (
         <div 
             className={indexStyle['container']}
-            onClick={() => {
+            onClick={async () => {
                 if (clickable) {
-                    setItemClickedM({name: '', icon: '', component: <ProfilePage userData={userData} />});
+                    const detailedUserData = await getUser(userData.id);
+                    console.log(detailedUserData.data);
+                    setItemClickedM({name: '', icon: '', component: <ProfilePage userData={detailedUserData.data} />});
                 }                
             }}
         >
