@@ -19,6 +19,7 @@
     height: 30px;
     width: 30px;
     margin-right: 10px;
+    object-fit: cover;
 }
 
 .my .icon {

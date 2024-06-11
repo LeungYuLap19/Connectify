@@ -42,13 +42,12 @@ export default function Index() {
                             {
                                 discoverPosts.map((post, index) => {
                                     return (
-                                        <div
+                                        <img 
                                         onClick={async () => {
                                             getPost(post.id);
                                         }}
-                                        key={index}>
-                                            <img src={post.photo} />
-                                        </div>
+                                        key={index}
+                                        src={post.photo} />
                                     )
                                 })
                             }
