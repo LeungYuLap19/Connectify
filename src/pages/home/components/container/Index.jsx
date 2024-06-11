@@ -82,7 +82,7 @@ export default function Index() {
       )}
 
       <div className={indexStyle['discovery']}>
-        <Discovery />
+        <Discovery setPostid={setPostid}/>
       </div>
     </div>
   );

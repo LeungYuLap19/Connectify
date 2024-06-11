@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import indexStyle from './index.module.css';
 import UserTag from '../../../../common/components/userTag/Index';
 import { useSelector } from 'react-redux';
 import Weather from '../weather/Index';
 import PostLoading from '../../../../animations/PostLoading';
 import Post from '../../../profile/components/post/Index';
+import useOpenPost from '../../../notifications/hooks/useOpenPost';
+import PostWindow from '../../../../common/components/postWindow/Index';
 
 export default function Index() {
     const discoverUsers = useSelector(state => state.discovery.value.discoverUsers);
     const discoverPosts = useSelector(state => state.discovery.value.discoverPosts);
+    const [postData, setPostData] = useState(null);
+    const { getPost } = useOpenPost(setPostData);
 
     return (
         <div className={indexStyle['container']}>
@@ -38,7 +42,13 @@ export default function Index() {
                             {
                                 discoverPosts.map((post, index) => {
                                     return (
-                                        <Post key={index} post={post} />
+                                        <div
+                                        onClick={async () => {
+                                            getPost(post.id);
+                                        }}
+                                        key={index}>
+                                            <img src={post.photo} />
+                                        </div>
                                     )
                                 })
                             }
@@ -51,6 +61,7 @@ export default function Index() {
                     }
                 </div>
             </div>
+            { postData && <PostWindow postUser={postData[0].user} posts={postData} setPosts={setPostData} postid={postData[0].id} setPostid={setPostData}/> }
         </div>
     )
 }

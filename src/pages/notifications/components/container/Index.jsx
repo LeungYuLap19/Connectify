@@ -11,10 +11,6 @@ export default function Index() {
   const { useClearAll } = useClear();
   const [ postData, setPostData ] = useState(null);
 
-  useEffect(() => {
-    console.log(postData);
-  }, [postData]);
-
   return (
     <div className={indexStyle['container']}>
       <div className={indexStyle['header']}>
