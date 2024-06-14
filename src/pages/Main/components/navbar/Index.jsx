@@ -6,11 +6,13 @@ import ProfilePage from '../../../profile/components/container/Index';
 import { navListName } from './navList';
 import { useSelector } from 'react-redux';
 import { ClickedContext } from '../../../../context/ClickedContext';
+import useLogout from '../../hooks/useLogout';
 
 export default function Index() {
   const [itemClicked, setItemClicked] = useState(navListName[0]);
   const userData = useSelector((state) => state.user.value.userData);
   const { setItemClickedM } = useContext(ClickedContext);
+  const { logout } = useLogout();
 
   return (
     <div className={indexStyle['container']}>
@@ -52,6 +54,17 @@ export default function Index() {
               )
             })
           }
+        </div>
+
+        <div className={indexStyle['navbar-logout']}>
+          <div 
+          onClick={() => {
+            logout();
+          }}
+          className={indexStyle['logout']}>
+            <img src="\assets\images\logout.png" alt="logout" />
+            <p>Logout</p>
+          </div>
         </div>
     </div>
   )

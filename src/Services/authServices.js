@@ -1,8 +1,8 @@
-import axios from "axios";
+import api from './axiosInstance';
 
 async function createUser(username, email, password) {
     try {
-        const res = await axios.post('http://localhost:3000/auth/createUser', {
+        const res = await api.post('/auth/createUser', {
             username: username,
             email: email,
             password: password
@@ -32,11 +32,12 @@ async function createUser(username, email, password) {
     }
 }
 
-async function userLogin(identifier, password) {
+async function userLogin(identifier, password, rememberMe) {
     try {
-        const res = await axios.post('http://localhost:3000/auth/userLogin', {
+        const res = await api.post('/auth/userLogin', {
             identifier: identifier,
-            password: password
+            password: password,
+            rememberMe: rememberMe
         });
 
         if (res.status === 200) {

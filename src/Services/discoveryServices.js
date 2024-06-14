@@ -1,8 +1,9 @@
 import axios from "axios";
+import api from './axiosInstance';
 
 async function discoverPosts(userid) {
     try {
-        const res = await axios.get(`http://localhost:3000/discovery/discoverPosts/${userid}`);
+        const res = await api.get(`/discovery/discoverPosts/${userid}`);
 
         if(res.status === 200) {
             return res.data;
@@ -18,7 +19,7 @@ async function discoverPosts(userid) {
 
 async function discoverUsers(userid) {
     try {
-        const res = await axios.get(`http://localhost:3000/discovery/discoverUsers/${userid}`);
+        const res = await api.get(`/discovery/discoverUsers/${userid}`);
         
         if (res.status === 200) {
             return res.data;

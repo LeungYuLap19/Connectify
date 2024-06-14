@@ -1,8 +1,9 @@
 import axios from "axios"
+import api from './axiosInstance';
 
 async function createChatroom(chatroom) {
     try {
-        const res = await axios.post('http://localhost:3000/message/createChatroom', {
+        const res = await api.post('/message/createChatroom', {
             chatroom: chatroom
         });
 
@@ -20,7 +21,7 @@ async function createChatroom(chatroom) {
 
 async function addMessage(message, chatroomid) {
     try {  
-        const res = await axios.post('http://localhost:3000/message/addMessage', {
+        const res = await api.post('/message/addMessage', {
             message: message,
             chatroomid: chatroomid
         });
@@ -35,7 +36,7 @@ async function addMessage(message, chatroomid) {
 
 async function addPhoto(message, chatroomid) {
     try {
-        const res = await axios.post('http://localhost:3000/message/addPhoto', {
+        const res = await api.post('/message/addPhoto', {
             message: message,
             chatroomid: chatroomid
         });
@@ -50,7 +51,7 @@ async function addPhoto(message, chatroomid) {
 
 async function removeChatroom(chatroomid) {
     try {
-        const res = await axios.post('http://localhost:3000/message/removeChatroom', {
+        const res = await api.post('/message/removeChatroom', {
             chatroomid: chatroomid
         });
 
@@ -64,7 +65,7 @@ async function removeChatroom(chatroomid) {
 
 async function getChatroomsByUserid(userid) {
     try {
-        const res = await axios.post('http://localhost:3000/message/getChatroomsByUserid', {
+        const res = await api.post('/message/getChatroomsByUserid', {
             userid: userid
         });
 

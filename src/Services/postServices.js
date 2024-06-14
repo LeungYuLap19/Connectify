@@ -1,8 +1,9 @@
 import axios from "axios";
+import api from './axiosInstance';
 
 async function createPost(postData) {
     try {
-        const res = await axios.post('http://localhost:3000/post/createPost', {
+        const res = await api.post('/post/createPost', {
             postData: postData
         });
 
@@ -20,7 +21,7 @@ async function createPost(postData) {
 
 async function getPostsByUserid(userid) {
     try {
-        const res = await axios.post('http://localhost:3000/post/getPostsByUserid', {
+        const res = await api.post('/post/getPostsByUserid', {
             userid: userid,
         });
 
@@ -38,7 +39,7 @@ async function getPostsByUserid(userid) {
 
 async function toggleLikeOnPost(userid, postid) {
     try {
-        const res = await axios.post('http://localhost:3000/post/toggleLikeOnPost', {
+        const res = await api.post('/post/toggleLikeOnPost', {
             userid: userid,
             postid: postid
         });
@@ -57,7 +58,7 @@ async function toggleLikeOnPost(userid, postid) {
 
 async function addComment(comment, postid) {
     try {
-        const res = await axios.post('http://localhost:3000/post/addComment', {
+        const res = await api.post('/post/addComment', {
             comment: comment,
             postid: postid
         });
@@ -76,7 +77,7 @@ async function addComment(comment, postid) {
 
 async function getPostsFromFollowing(userid, lastPostTime) {
     try {
-        const res = await axios.get('http://localhost:3000/post/getPostsFromFollowing', {
+        const res = await api.get('/post/getPostsFromFollowing', {
             params: {
                 userid: userid,
                 lastPostTime: lastPostTime,
@@ -97,7 +98,7 @@ async function getPostsFromFollowing(userid, lastPostTime) {
 
 async function getPostByPostid(postid) {
     try {
-        const res = await axios.get(`http://localhost:3000/post/getPostByPostid/${postid}`);
+        const res = await api.get(`/post/getPostByPostid/${postid}`);
 
         if (res.status === 200) {
             return res.data;

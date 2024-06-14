@@ -31,9 +31,12 @@ const chatroomsSlice = createSlice({
                 return chatroom
             });
             state.value.chatroomsData = newChatroomsData;
-        } 
+        },
+        reset: (state) => {
+            state.value = initState
+        }
     }
 });
 
-export const { storeChatroom, chatroomRemove, storeMessage } = chatroomsSlice.actions;
+export const { storeChatroom, chatroomRemove, storeMessage, reset } = chatroomsSlice.actions;
 export default chatroomsSlice.reducer;

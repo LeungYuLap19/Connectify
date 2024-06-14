@@ -9,6 +9,7 @@ import useWeather from '../../hooks/useWeather';
 import useGetFollowingPosts from '../../../auth/hooks/useGetFollowingPosts';
 import useGetMessages from '../../../auth/hooks/useGetMessages';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function Index() {
   const [itemClickedM, setItemClickedM] = useState(navListName[0]);
@@ -18,25 +19,34 @@ export default function Index() {
   const { getLocWeather } = useWeather();
   const { getPosts } = useGetFollowingPosts();
   const { getMessages } = useGetMessages();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getDiscoveryPosts();
-    getDiscoverUsers();
-    getLocWeather();
-    getPosts(userData.id);
-    getMessages(userData.id);
+    if (userData) {
+      getDiscoveryPosts();
+      getDiscoverUsers();
+      getLocWeather();
+      getPosts(userData.id);
+      getMessages(userData.id);
+    }
+    else {
+      navigate('/');
+    }
   }, []);
 
   return (
     <ClickedContext.Provider value={{ itemClickedM, setItemClickedM }}>
-      <div className={indexStyle['container']}>
-        <div className={indexStyle['main-navbar']}>
-            <Navbar setItemClickedM={setItemClickedM} />
+      {
+        userData && 
+        <div className={indexStyle['container']}>
+          <div className={indexStyle['main-navbar']}>
+              <Navbar setItemClickedM={setItemClickedM} />
+          </div>
+          <div className={indexStyle['main-page']}>
+            { itemClickedM && itemClickedM.component }
+          </div>
         </div>
-        <div className={indexStyle['main-page']}>
-          { itemClickedM && itemClickedM.component }
-        </div>
-      </div>
+      }
     </ClickedContext.Provider>
   )
 }

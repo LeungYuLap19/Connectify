@@ -11,9 +11,6 @@ const userSlice = createSlice({
         login: (state, action) => {
             state.value.userData = action.payload;
         },
-        logout: (state) => {
-            state.value = initState;
-        },
         modifyFollowings: (state, action) => {
             state.value.userData.followings = action.payload;
         },
@@ -22,9 +19,12 @@ const userSlice = createSlice({
         },
         modifyBackground: (state, action) => {
             state.value.userData.background = action.payload;
-        }
+        },
+        reset: (state) => {
+            state.value = initState;
+        },
     }
 });
 
-export const { login, logout, modifyFollowings, modifyIcon, modifyBackground } = userSlice.actions;
+export const { login, modifyFollowings, modifyIcon, modifyBackground, reset } = userSlice.actions;
 export default userSlice.reducer;

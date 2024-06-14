@@ -1,8 +1,9 @@
 import axios from "axios";
+import api from './axiosInstance';
 
 async function createNotification(notification) {
     try {
-        const res = await axios.post('http://localhost:3000/notification/createNotification', {
+        const res = await api.post('/notification/createNotification', {
             notification: notification,
         });
 
@@ -22,7 +23,7 @@ async function createNotification(notification) {
 
 async function getNotifications(userid) {
     try {
-        const res = await axios.get(`http://localhost:3000/notification/getNotifications/${userid}`);
+        const res = await api.get(`/notification/getNotifications/${userid}`);
 
         if (res.status === 200) {
             return res.data;
@@ -40,7 +41,7 @@ async function getNotifications(userid) {
 
 async function removeNotification(notificationid) {
     try {
-        const res = await axios.post('http://localhost:3000/notification/removeNotification', {
+        const res = await api.post('/notification/removeNotification', {
             notificationid: notificationid,
         });
 
@@ -56,7 +57,7 @@ async function removeNotification(notificationid) {
 
 async function removeAllNotifications(userid) {
     try {
-        const res = await axios.post('http://localhost:3000/notification/removeAllNotifications', {
+        const res = await api.post('/notification/removeAllNotifications', {
             userid: userid
         });
 

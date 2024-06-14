@@ -1,8 +1,9 @@
 import axios from "axios";
+import api from './axiosInstance';
 
 async function searchUsernames(input) {
     try {
-        const res = await axios.get(`http://localhost:3000/user/searchUsernames/${input}`);
+        const res = await api.get(`/user/searchUsernames/${input}`);
 
         if (res.status === 200) {
             return res.data;
@@ -18,7 +19,7 @@ async function searchUsernames(input) {
 
 async function getUser(userid) {
     try {
-        const res = await axios.get(`http://localhost:3000/user/getUser/${userid}`);
+        const res = await api.get(`/user/getUser/${userid}`);
 
         if (res.status === 200) {
             return res.data;
@@ -34,7 +35,7 @@ async function getUser(userid) {
 
 async function toggleFollowUser(userid, followerid) {
     try {
-        const res = await axios.post('http://localhost:3000/user/toggleFollowUser', {
+        const res = await api.post('/user/toggleFollowUser', {
             userid: userid,
             followerid: followerid
         });
@@ -53,7 +54,7 @@ async function toggleFollowUser(userid, followerid) {
 
 async function getListUsers(list) {
     try {
-        const res = await axios.post('http://localhost:3000/user/getListUsers', {
+        const res = await api.post('/user/getListUsers', {
             list: list
         });
 
@@ -71,7 +72,7 @@ async function getListUsers(list) {
 
 async function setIcon(userid, image) {
     try {
-        const res = await axios.post('http://localhost:3000/user/setIcon', {
+        const res = await api.post('/user/setIcon', {
             userid: userid,
             image: image
         })
@@ -86,7 +87,7 @@ async function setIcon(userid, image) {
 
 async function setBackground(userid, image) {
     try {
-        const res = await axios.post('http://localhost:3000/user/setBackground', {
+        const res = await api.post('/user/setBackground', {
             userid: userid,
             image: image
         })

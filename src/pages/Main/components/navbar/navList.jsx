@@ -11,5 +11,5 @@ export const navListName = [
     {name: 'Messages', icon: '/assets/images/messages.png', component: <Message />},
     {name: 'Notifications', icon: '/assets/images/notifications.png', component: <Notifications />},
     {name: 'Create', icon: '/assets/images/create.png', component: <Create />},
-    {name: 'Settings', icon: '/assets/images/settings.png', component: <Setting />}
+    // {name: 'Settings', icon: '/assets/images/settings.png', component: <Setting />}
 ];

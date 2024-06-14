@@ -23,9 +23,12 @@ const discoverySlice = createSlice({
         },
         setCurrWeather: (state, action) => {
             state.value.weather = action.payload;
+        },
+        reset: (state) => {
+            state.value = initState;
         }
     }
 });
 
-export const { storeDiscoverPosts, storeDiscoverUsers, removeDiscoverUser, setCurrWeather } = discoverySlice.actions;
+export const { storeDiscoverPosts, storeDiscoverUsers, removeDiscoverUser, setCurrWeather, reset } = discoverySlice.actions;
 export default discoverySlice.reducer;

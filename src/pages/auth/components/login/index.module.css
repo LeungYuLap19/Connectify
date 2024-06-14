@@ -67,3 +67,16 @@
     margin-left: 10px;
     cursor: pointer;
 }
+
+.login-form-remember {
+    display: flex;
+    align-items: center;
+    margin-top: 20px !important;
+}
+
+.login-form-remember input {
+    height: 16px;
+    width: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+}
